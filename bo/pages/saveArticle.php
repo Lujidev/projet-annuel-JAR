@@ -51,7 +51,7 @@
 				}
 				else{// Le nom est déjà dans la bdd
 					$listOfError[] = 2;
-					header("location: creerArticle.php?errors=".implode(',', $listOfError));
+					header("location: createArticle.php?errors=".implode(',', $listOfError));
 				}
 			}
 			//=====================================================================//
@@ -60,12 +60,12 @@
 			}
 			//=====================================================================//
 			$query->execute($dataToInsert);
-			header("location: gererArticle.php");
+			header("location: manageArticle.php");
 			
 		}
 		//=====================================================================//
 		else{//($error == true)
-			header("location: creerArticle.php?errors=".implode(',', $listOfError));
+			header("location: createArticle.php?errors=".implode(',', $listOfError));
 		}
 	} 
 	//=====================================================================//

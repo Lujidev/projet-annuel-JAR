@@ -72,7 +72,7 @@
 				}
 				else{// Le nom est déjà dans la bdd
 					$listOfError[] = 2;
-					header("location: creerUtilisateur.php?errors=".implode(',', $listOfError));
+					header("location: createUser.php?errors=".implode(',', $listOfError));
 				}
 			}
 			//=====================================================================//
@@ -83,11 +83,11 @@
 
 			$query->execute($dataToInsert);
 			//echo ("<br><br>DONNES INSEREE !"); // mettre une redirection réelle des que la page est prête; 
-			header("location: gererUtilisateur.php");
+			header("location: manageUser.php");
 		}
 		//=====================================================================//
 		else{//($error == true)
-			header("location: creerUtilisateur.php?errors=".implode(',', $listOfError));
+			header("location: createUser.php?errors=".implode(',', $listOfError));
 		}
 	} 
 	//=====================================================================//

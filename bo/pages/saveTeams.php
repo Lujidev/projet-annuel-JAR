@@ -43,7 +43,7 @@
 				}
 				else{// Le nom est déjà dans la bdd
 					$listOfError[] = 2;
-					header("location: creerEquipe.php?errors=".implode(',', $listOfError));
+					header("location: createTeam.php?errors=".implode(',', $listOfError));
 				}
 			}
 			//=====================================================================//
@@ -54,12 +54,12 @@
 
 			$query->execute($dataToInsert);
 			//echo ("<br><br>DONNES INSEREE !"); // mettre une redirection réelle des que la page est prête; 
-			header("location: gererEquipe.php");	
+			header("location: manageTeam.php");
 			
 		}
 		//=====================================================================//
 		else{//($error == true)
-			header("location: creerEquipe.php?errors=".implode(',', $listOfError));
+			header("location: createTeam.php?errors=".implode(',', $listOfError));
 		}
 	} 
 	//=====================================================================//
