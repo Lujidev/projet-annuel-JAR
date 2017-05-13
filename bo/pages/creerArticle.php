@@ -25,7 +25,7 @@ $res = $query->fetchAll();
 
     <section>
 	
-	<form method="POST" action="sauvegardeArticle.php" enctype="multipart/form-data">
+	<form method="POST" action="saveArticle.php" enctype="multipart/form-data">
     <div class="form-group">
     <input type="text" name="nom_article" class="form-control" placeholder="nom de votre article" required="requried">
     </div>
