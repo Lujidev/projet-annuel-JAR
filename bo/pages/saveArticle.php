@@ -58,6 +58,7 @@
                             mkdir(UPLOAD_PATH);
                         }
 
+
                         /*Création des variable pour éviter les erreurs*/
 
                         $myImage = '';
