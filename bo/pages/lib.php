@@ -146,8 +146,8 @@ require_once "conf.inc.php";
             <td>".$value[1]."</td>
             <td>".$value[2]."</td>
             <td>".$res['nom_categorie']."</td>
-            <td><a href=supprimerUtilisateur.php?id=".$value[0].">Supprimer</a>
-            <td><a href=modifierUtilisateur.php?id=".$value[0].">Modifier</a></td>
+            <td><a href=removeElements.php?id=".$value[0].">Supprimer</a>
+            <td><a href=modifyUser.php?id=".$value[0].">Modifier</a></td>
             </tr>";
             print_r($res);
             echo "<br>";  
@@ -171,8 +171,8 @@ require_once "conf.inc.php";
             <td>".$value['description_equipe']."</td>
             <td>".$value['nb_article']."</td>
             <td>".$res['nom_categorie']."</td>
-            <td><a href=supprimerElements.php?id=".$value['nom_equipe']."&amp;page=4>Supprimer</a>
-            <td><a href=modifierArticle.php?id=".$value['nom_equipe'].">Modifier</a></td>
+            <td><a href=removeElements.php?id=".$value['nom_equipe']."&amp;page=4>Supprimer</a>
+            <td><a href=modifyArticle.php?id=".$value['nom_equipe'].">Modifier</a></td>
             </tr>";
         }
     }
@@ -194,8 +194,8 @@ require_once "conf.inc.php";
             <td>".$value['nom_projet']."</td>
             <td>".$value['description_projet']."</td>
             <td>".$res['nom_categorie']."</td>
-            <td><a href=supprimerElements.php?id=".$value['id_projet']."&amp;page=5>Supprimer</a>
-            <td><a href=modifierProjet.php?id=".$value['id_projet'].">Modifier</a></td>
+            <td><a href=removeElements.php?id=".$value['id_projet']."&amp;page=5>Supprimer</a>
+            <td><a href=modifyProject.php?id=".$value['id_projet'].">Modifier</a></td>
             </tr>";
         }
     }
@@ -211,8 +211,8 @@ require_once "conf.inc.php";
             <td>".$value['nom_categorie']."</td>
             <td>".$value['description_categorie']."</td>
             <td>".$value['filter']."</td>
-            <td><a href=supprimerElements.php?id=".$value['id_categorie']."&amp;page=6>Supprimer</a>
-            <td><a href=modifierCategorie.php?id=".$value['id_categorie'].">Modifier</a></td>
+            <td><a href=removeElements.php?id=".$value['id_categorie']."&amp;page=6>Supprimer</a>
+            <td><a href=modifyCategories.php?id=".$value['id_categorie'].">Modifier</a></td>
             </tr>";
         }
     }
@@ -230,8 +230,8 @@ require_once "conf.inc.php";
             <td>".$value['date_modification']."</td>
             <td>".$value['is_delete']."</td>
             <td>".$value['article']."</td>
-            <td><a href=supprimerElement.php?id=".$value['id_commentaire']."&amp;page=1>Supprimer</a>
-            <td><a href=modifierCommentaire.php?id=".$value['id_commentaire'].">Modifier</a></td>
+            <td><a href=removeElements.php?id=".$value['id_commentaire']."&amp;page=1>Supprimer</a>
+            <td><a href=modifyComment.php?id=".$value['id_commentaire'].">Modifier</a></td>
             </tr>";
         }
     }
@@ -253,8 +253,8 @@ require_once "conf.inc.php";
             <td>".$value['nom_article']."</td>
             <td>".$value['description_article']."</td>
             <td>".$res['nom_categorie']."</td>
-            <td><a href=supprimerElements.php?id=".$value['id_article']."&amp;page=2>Supprimer</a>
-            <td><a href=modifierArticle.php?id=".$value['id_article'].">Modifier</a></td>
+            <td><a href=removeElements.php?id=".$value['id_article']."&amp;page=2>Supprimer</a>
+            <td><a href=modifyArticle.php?id=".$value['id_article'].">Modifier</a></td>
             </tr>";
         }
     }
@@ -281,8 +281,8 @@ require_once "conf.inc.php";
             <td>".$res['role']."</td>
             <td>".$value['date_creation']."</td>
             <td>".$value['activation']."</td>
-            <td><a href=supprimerElements.php?id=".$value['id_utilisateur']."&amp;page=3>Supprimer</a>
-            <td><a href=modifierUtilisateur.php?id=".$value['id_utilisateur'].">Modifier</a></td>
+            <td><a href=removeElements.php?id=".$value['id_utilisateur']."&amp;page=3>Supprimer</a>
+            <td><a href=modifyUser.php?id=".$value['id_utilisateur'].">Modifier</a></td>
             </tr>";
         }
     }

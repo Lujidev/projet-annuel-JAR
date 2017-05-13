@@ -86,10 +86,10 @@
         <a href="#"><i class="fa fa-user fa-fw"></i> Utilisateurs<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
             <li>
-                <a href="gererUtilisateur.php">Gérer les utilisateur</a>
+                <a href="manageUser.php">Gérer les utilisateur</a>
             </li>
             <li>
-                <a href="creerUtilisateur.php">Créer un utilisateur</a>
+                <a href="createUser.php">Créer un utilisateur</a>
             </li>
         </ul>
     </li>
@@ -98,10 +98,10 @@
         <a href="#"><i class="fa fa-users fa-fw"></i> Équipes <span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
             <li>
-                <a href="gererEquipe.php">Gérer les équipes</a>
+                <a href="manageTeam.php">Gérer les équipes</a>
             </li>
             <li>
-                <a href="creerEquipe.php">Créer une équipe</a>
+                <a href="createTeam.php">Créer une équipe</a>
             </li>
         </ul>
     </li>
@@ -110,10 +110,10 @@
         <a href="#"><i class="fa fa-file fa-fw"></i> Articles<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
             <li>
-                <a href="gererArticle.php">Gérer les articles</a>
+                <a href="manageArticle.php">Gérer les articles</a>
             </li>
             <li>
-                <a href="creerArticle.php">Créer un articles</a>
+                <a href="createArticle.php">Créer un articles</a>
             </li>
         </ul>
     </li>
@@ -121,10 +121,10 @@
         <a href="#"><i class="fa fa-folder-open fa-fw"></i> Projets<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
             <li>
-                <a href="gererProjet.php">Gérer les projets</a>
+                <a href="manageProject.php">Gérer les projets</a>
             </li>
             <li>
-                <a href="creerProjet.php">Créer un projet</a>
+                <a href="createProject.php">Créer un projet</a>
             </li>
         </ul>
     </li>
@@ -132,15 +132,15 @@
         <a href="#"><i class="fa fa-archive fa-fw"></i> Catégories<span class="fa arrow"></span></a>
         <ul class="nav nav-second-level">
             <li>
-                <a href="gererCategorie.php">Gérer les catégories</a>
+                <a href="manageCategories.php">Gérer les catégories</a>
             </li>
             <li>
-                <a href="creerCategorie.php">Créer une catégorie</a>
+                <a href="createCategories.php">Créer une catégorie</a>
             </li>
         </ul>
     </li>
     <li>
-        <a href="gererCommentaire.php"><i class="fa fa-comments fa-fw"></i> Gérer les commentaires</a>
+        <a href="manageComment.php"><i class="fa fa-comments fa-fw"></i> Gérer les commentaires</a>
     </li>
         </ul>
     </div>
