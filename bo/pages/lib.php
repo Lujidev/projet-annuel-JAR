@@ -306,3 +306,122 @@ require_once "conf.inc.php";
         $query = $db->prepare("UPDATE ".$table." SET is_delete=1 WHERE ".$nameCol."=:".$nameCol);
         $query->execute( [$nameCol=>$val] );
     }
+
+
+/**
+ * @author: Jing LIN
+ * @return: Upload l'image et retourne le chemin vers celui ci
+ */
+
+    function uploadImage ($image, $path){
+
+        define("UPLOAD_PATH", "./upload/$path");
+
+        /*définition des extensions autorisées*/
+
+        //$filesAutorized1 = ["jpeg"];
+        $filesAutorized = array( 'jpg' , 'jpeg', 'png', 'JPEG', 'PNG', 'JPG');
+
+
+        /*Vérification de s'il y a bien 2 fichiers choisi*/
+
+        if (!empty($image)){
+
+
+            /*création du dossier d'upload temporaire qui sera supprimé après s'il n'existe pas*/
+
+            if ( !file_exists(UPLOAD_PATH) ) {
+                mkdir(UPLOAD_PATH);
+            }
+
+
+            /*Création des variable pour éviter les erreurs*/
+
+            $myImage = '';
+            $erreur = 0;
+
+
+            /*On donne un nom unique au fichier upload*/
+
+            $file = $image;
+
+            $fileInfo = pathinfo($file["name"]);
+
+            $name = uniqid().".".$fileInfo["extension"];
+
+
+            /*Vérification de l'extension du fichier*/
+
+            if ( !in_array($fileInfo["extension"], $filesAutorized)){
+
+                $file["error"] = UPLOAD_ERR_EXTENSION;
+
+                $erreur = 7;
+
+            }
+
+            /*On déplace l'image pour pouvoir l'utiliser plus simplement*/
+
+            if($file["error"] == 0){
+
+                $myImage = UPLOAD_PATH."/".$name;
+
+                move_uploaded_file($file["tmp_name"],$myImage);
+
+                if($fileInfo["extension"] == 'jpeg'){
+
+                    $destination = imagecreatefromjpeg($myImage);
+
+                }
+                if($fileInfo["extension"] == 'jpg'){
+
+                    $destination = imagecreatefromjpeg($myImage);
+
+                }
+                if($fileInfo["extension"] == 'png'){
+
+                    $destination = imagecreatefrompng($myImage);
+
+                }
+
+                return $myImage;
+            }
+
+            /*Switch pour les différents erreurs*/
+            else{
+
+                switch ($file["error"]) {
+                    case UPLOAD_ERR_INI_SIZE:
+                        $message = "The uploaded file exceeds the upload_max_filesize directive in php.ini";
+                        break;
+                    case UPLOAD_ERR_FORM_SIZE:
+                        $message = "The uploaded file exceeds the MAX_FILE_SIZE directive that was specified in the HTML form";
+                        break;
+                    case UPLOAD_ERR_PARTIAL:
+                        $message = "The uploaded file was only partially uploaded";
+                        break;
+                    case UPLOAD_ERR_NO_FILE:
+                        $message = "No file was uploaded";
+                        break;
+                    case UPLOAD_ERR_NO_TMP_DIR:
+                        $message = "Missing a temporary folder";
+                        break;
+                    case UPLOAD_ERR_CANT_WRITE:
+                        $message = "Failed to write file to disk";
+                        break;
+                    case UPLOAD_ERR_EXTENSION:
+                        $message = "File upload stopped by extension";
+                        break;
+
+                    default:
+                        $message = "Unknown upload error";
+                        break;
+                }
+
+                /*Affichage du message d'erreur si problème il y a*/
+
+                return $message;
+            }
+
+        }
+    }
