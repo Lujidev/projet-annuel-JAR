@@ -36,6 +36,9 @@ $res = $query->fetchAll();
     <div class="form-group">
     <textarea name="contenu_article" class="form-control" placeholder="contenu de votre article"></textarea>
     </div>
+    <div class="form-group">
+        Votre image <input type="file" name="image" required="required"> </br>
+    </div>
 
     <input type="hidden" name="from" value="creerArticle">
     <button type="submit" class="btn btn-default">Envoyer</button>

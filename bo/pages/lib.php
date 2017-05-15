@@ -273,12 +273,14 @@ require_once "conf.inc.php";
                 "id_droit" => $value['droit'],
             ]);
             $res = $query->fetch();
+
+            $role = utf8_encode($res['role']);
             
             echo "<tr class='odd gradex'>
             <td>".$value['id_utilisateur']."</td>
             <td>".$value['pseudo']."</td>
             <td>".$value['email']."</td>
-            <td>".$res['role']."</td>
+            <td>".$role."</td>
             <td>".$value['date_creation']."</td>
             <td>".$value['activation']."</td>
             <td><a href=removeElements.php?id=".$value['id_utilisateur']."&amp;page=3>Supprimer</a>

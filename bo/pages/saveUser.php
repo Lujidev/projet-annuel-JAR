@@ -55,15 +55,18 @@
 
 				if (!verifyPresent("UTILISATEURS", "pseudo", $pseudo)){
 
+                    $myImage = uploadImage($_FILES["image"], "user");
+
 					//Si on vient de la page creerUtilisateur, alors la requête préparée est une insertion
-					$query = $db->prepare("INSERT INTO UTILISATEURS (pseudo, email, mdp, presentation, droit) VALUES(:pseudo, :email, :pwd, :pres, :droit)");
+					$query = $db->prepare("INSERT INTO UTILISATEURS (pseudo, email, avatar, mdp, presentation, droit) VALUES(:pseudo, :email, :avatar, :pwd, :pres, :droit)");
 					
 					//Récupération des catégories selectionnées par l'utilisateur
 					$pwd = password_hash($_POST["pwd"], PASSWORD_DEFAULT);
 
 					$dataToInsert = [
 						        "pseudo" => $pseudo, 
-								 "email" => $email, 
+								 "email" => $email,
+                                "avatar"=> $myImage,
 						  		   "pwd" => $pwd,
 						  		  "pres" => $presentation,
 						  		 "droit" => 2

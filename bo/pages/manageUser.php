@@ -6,7 +6,7 @@
 
 
 	$db = dbConnect();
-	$query = $db->prepare("SELECT * FROM UTILISATEURS WHERE is_delete=0");
+	$query = $db->prepare("SELECT * FROM UTILISATEURS WHERE is_deleted=0");
 	$query->execute([]);
 	$res = $query->fetchAll();
 		

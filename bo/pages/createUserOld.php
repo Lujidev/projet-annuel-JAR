@@ -28,7 +28,7 @@
 
 <section>
 	
-	<form role="form" method="POST" action="saveUser.php" enctype="multipart/form-data">
+	<form role="form" method="POST" action="saveUser.php" >
 
         <div class="form-group">
         <input type="text" name="pseudo" class="form-control" placeholder="votre pseudo" required="requried">
@@ -40,9 +40,6 @@
 		<input type="password" name="pwd" class="form-control" placeholder="Votre mot de passe" required="requried"><br>
 		<input type="password" name="pwd2" class="form-control" placeholder="Confirmation de votre mot de passe" required="requried">
 		</div>
-        <div class="form-group">
-            Votre image <input type="file" name="image" required="required"> </br>
-        </div>
 		<div class="form-group">
 		<textarea name="presentation" class="form-control" rows="10" placeholder="votre presentation"></textarea>
 		</div>
