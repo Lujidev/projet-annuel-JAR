@@ -312,7 +312,7 @@ require_once "conf.inc.php";
  * @author: Jing LIN
  * @return: Upload l'image et retourne le chemin vers celui ci
  * $image = $_FILES["name"] si envoyé par formulaire.
- * $path = le sous dossier du dossier upload dans lequel tu veux enregistrer ton image.
+ * $path = le sous dossier du dossier upload dans lequel tu veux enregistrer ton image, par exemple "article" pour /upload/article.
  */
 
     function uploadImage ($image, $path){
@@ -386,7 +386,7 @@ require_once "conf.inc.php";
 
                 }
 
-                return $myImage;
+                return $name;
             }
 
             /*Switch pour les différents erreurs*/
