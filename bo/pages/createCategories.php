@@ -31,7 +31,7 @@
                     <option value="a">article</option>
                     <option value="p">projet / équipe</option>
                 </select>
-            </div>
+        </div>
 
         <input type="hidden" name="from"  value="creerCategorie">
         <button type="submit" class="btn btn-default">Envoyer</button>

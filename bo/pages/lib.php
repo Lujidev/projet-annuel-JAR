@@ -305,7 +305,7 @@ require_once "conf.inc.php";
      */
     function deleteElement ($table, $nameCol, $val) {
         $db = dbConnect();
-        $query = $db->prepare("UPDATE ".$table." SET is_delete=1 WHERE ".$nameCol."=:".$nameCol);
+        $query = $db->prepare("UPDATE ".$table." SET is_deleted=1 WHERE ".$nameCol."=:".$nameCol);
         $query->execute( [$nameCol=>$val] );
     }
 
