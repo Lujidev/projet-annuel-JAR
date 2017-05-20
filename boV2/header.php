@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "lib.php";
-$userRole=isConnected();
+$user=isConnected();
 
 ?>
 <!DOCTYPE html>
@@ -61,7 +61,7 @@ $userRole=isConnected();
               </div>
               <div class="profile_info">
                 <span>bienvenu,</span>
-                <h2>Bite bite</h2>
+                <h2><?php echo $user['pseudo'] ?></h2>
               </div>
             </div>
             <!-- /menu profile quick info -->

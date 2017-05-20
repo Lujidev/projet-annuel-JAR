@@ -16,7 +16,7 @@ require_once "conf.inc.php";
         
         if (!empty($_SESSION["access_token"])){
             $db = dbConnect();
-            $query = $db->prepare("SELECT id_utilisateur, droit FROM UTILISATEURS WHERE access_token=:token AND email=:email AND is_deleted=0");
+            $query = $db->prepare("SELECT * FROM UTILISATEURS WHERE access_token=:token AND email=:email AND is_deleted=0");
             $query->execute([
                 "token"=>$_SESSION["access_token"],
                 "email"=>$_SESSION["email"]
@@ -29,7 +29,7 @@ require_once "conf.inc.php";
                 header("location: login.php");
             }
             else{
-               return $res['droit'];
+               return $res;
                 //return true;
             }
         }
