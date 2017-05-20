@@ -1,6 +1,6 @@
 <?php
 require "header.php";
-require "conf.inc.php";
+
 
 
 $res = getTeams();
