@@ -1,6 +1,8 @@
 <?php
-
+session_start();
 include "lib.php";
+isConnected();
+
 $ids=0;
 
 if(isset($_POST['delete'])){

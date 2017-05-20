@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	isConnected();
 	require "conf.inc.php";
 	require "lib.php";
 

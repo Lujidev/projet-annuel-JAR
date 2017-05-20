@@ -1,7 +1,8 @@
 <?php
+session_start();
 
 include "lib.php";
 
-$res = getArticles();
+$res1 = isConnected();
 
-print_r($res);
+print_r($res1);

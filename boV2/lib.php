@@ -16,21 +16,24 @@ require_once "conf.inc.php";
         
         if (!empty($_SESSION["access_token"])){
             $db = dbConnect();
-            $query = $db->prepare("SELECT id_utilisateur FROM UTILISATEURS WHERE access_token=:token AND email=:email AND is_deleted=0");
+            $query = $db->prepare("SELECT id_utilisateur, droit FROM UTILISATEURS WHERE access_token=:token AND email=:email AND is_deleted=0");
             $query->execute([
                 "token"=>$_SESSION["access_token"],
                 "email"=>$_SESSION["email"]
             ]);
-            
-            if (empty($query->fetch())){
+
+            $res = $query->fetch();
+
+            if (empty($res)){
                 unset($_SESSION["access_token"]);
-                return false;
+                header("location: login.php");
             }
             else{
-                return true;
+               return $res['droit'];
+                //return true;
             }
         }
-        return false;
+        header("location: login.php");
     }
 
     function disconnect(){
@@ -41,6 +44,8 @@ require_once "conf.inc.php";
     	$query->execute(["email"=>$_SESSION["email"]]);
 
     	unset ($_SESSION["access_token"]);
+        unset ($_SESSION["email"]);
+        unset ($_SESSION["id_utilisateur"]);
         //}
     }
 
@@ -109,7 +114,7 @@ require_once "conf.inc.php";
      * @author: Ronan Sgaravatto
      * @return: Retourne un token généré aléatoirement à chaque tirage. Possibilité de mettre un salt en paramètre
      */
-    function createToken ($salt = "vefuhzlmfqdfibhdsvqsf, ejkb poufncodighbdvpsqmzfpçe"){
+    function createToken ($salt = "vefuhzlmfqdfibhdsvqsfejkbpoufncodighbdvpsqmzfpçe"){
         return md5(uniqid().$salt.time().substr($salt, rand(3, strlen($salt) - 3)));
     }
 

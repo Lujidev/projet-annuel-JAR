@@ -1,7 +1,7 @@
-<?php 
+<?php
+require "header.php";
 require "conf.inc.php";
-include "lib.php";
-include "header.php";
+
 
 $res = getUsers();
 

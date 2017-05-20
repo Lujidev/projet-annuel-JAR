@@ -1,3 +1,9 @@
+<?php
+session_start();
+require "lib.php";
+$userRole=isConnected();
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
   <head>
@@ -194,7 +200,7 @@
                       </a>
                     </li>
                     <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                    <li><a href="disconnect.php"><i class="fa fa-sign-out pull-right"></i>Déconnecter</a></li>
                   </ul>
                 </li>
 

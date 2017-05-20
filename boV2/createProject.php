@@ -1,6 +1,5 @@
-<?php 
-include "header.php";
-require "lib.php";
+<?php
+require "header.php";
 
   $db = dbConnect();
   $query = $db->prepare("SELECT id_categorie, nom_categorie FROM categories WHERE filter = :filter");

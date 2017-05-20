@@ -1,6 +1,5 @@
-<?php 
-session_start();
-include "header.php";
+<?php
+require "header.php";
 ?>
 
         <!-- page content -->
