@@ -57,7 +57,7 @@ $user=isConnected();
             <!-- menu profile quick info -->
             <div class="profile clearfix">
               <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+                <img src="upload/user/<?php echo$user['avatar']?>" alt="..." class="img-circle profile_img">
               </div>
               <div class="profile_info">
                 <span>bienvenu,</span>
@@ -79,12 +79,17 @@ $user=isConnected();
                       <li><a href="index.php">Tableau de bord</a></li>
                     </ul>
                   </li>-->
-                  <li><a><i class="fa fa-user"></i> Utilisateurs <span class="fa fa-chevron-down"></span></a>
+                    <?php if ($user['droit'] == 3){
+                      echo '<li><a><i class="fa fa-user"></i> Utilisateurs <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="manageUser.php"> Gérer les Utilisateurs </a></li>
                       <li><a href="createUser.php">Créer un Utilisateur</a></li>
                     </ul>
-                  </li>
+                  </li>';
+
+                    }
+
+                    ?>
                   <li><a><i class="fa fa-users"></i> Equipes <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="manageTeam.php">Gérer les Équipes</a></li>
@@ -103,12 +108,16 @@ $user=isConnected();
                       <li><a href="createProject.php">Créer un Projet</a></li>
                     </ul>
                   </li>
-                  <li><a><i class="fa fa-archive"></i> Catégories <span class="fa fa-chevron-down"></span></a>
+                    <?php if ($user['droit'] == 3){
+                        echo '<li><a><i class="fa fa-archive"></i> Catégories <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
                       <li><a href="manageCategory.php">Gérer les Catérories</a></li>
                       <li><a href="createCategory.php">Créer une Catégorie</a></li>
                     </ul>
-                  </li>
+                  </li>';
+
+                    }?>
+
                   <li><a href="#"><i class="fa fa-home"></i> Gérer les commentaires </a></li>
                 </ul>
               </div>
@@ -188,7 +197,7 @@ $user=isConnected();
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">Bite Bite
+                    <img src="upload/user/<?php echo$user['avatar']?>" alt=""><?php echo $user['pseudo'] ?>
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
