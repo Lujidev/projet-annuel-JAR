@@ -28,8 +28,10 @@
 
 				if (!verifyPresent("PROJETS", "nom_projet", $nom_projet)){
 
+                    $myImage = uploadImage($_FILES["image"], "project");
+
 					//Si on vient de la page creerProjet, alors la requête préparée est une insertion
-					$query = $db->prepare("INSERT INTO PROJETS (nom_projet, description_projet, categorie_projet) VALUES(:nom_projet, :description_projet, :categorie_projet)");
+					$query = $db->prepare("INSERT INTO PROJETS (nom_projet, description_projet, categorie_projet, img_projet) VALUES(:nom_projet, :description_projet, :categorie_projet, :img_projet)");
 					
 					//Récupération des catégories selectionnées par l'utilisateur
 					$categories = getSelectedCategories ($_POST, "p");
@@ -37,7 +39,8 @@
 					$dataToInsert = [
 						        'nom_projet' => $nom_projet, 
 						"description_projet" => $description_projet, 
-						  "categorie_projet" => $categories
+						  "categorie_projet" => $categories,
+                        "img_projet"=>$myImage
 					];
 
 				}

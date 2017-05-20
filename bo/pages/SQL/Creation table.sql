@@ -29,6 +29,7 @@ CREATE TABLE PROJETS(
     /*categorie_projet INT REFERENCES CATEGOERIES(id_categorie),*/
     categorie_projet VARCHAR(100) REFERENCES CATEGORIES(id_categorie),
     /*PRIMARY KEY (id_projet)*/
+    img_projet VARCHAR(255) DEFAULT 'defaultProject',
     PRIMARY KEY (id_projet, nom_projet)
 
 );
@@ -40,7 +41,7 @@ CREATE TABLE PROJETS(
         nom_article VARCHAR(50) NOT NULL,
         description_article VARCHAR(100) NOT NULL,
         contenu_article TEXT NOT NULL,
-        image TEXT NULL,
+        image VARCHAR(255) DEFAULT 'defaultArticle',
         date_publication TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
         date_modification TIMESTAMP NULL DEFAULT NULL,
         is_delete BOOLEAN NOT NULL DEFAULT FALSE,
@@ -78,7 +79,7 @@ CREATE TABLE UTILISATEURS(
     id_utilisateur INT NOT NULL AUTO_INCREMENT,
     email VARCHAR(50) NOT NULL,
     pseudo VARCHAR(50) NOT NULL,
-    avatar TEXT NULL,
+    avatar VARCHAR(255) DEFAULT 'defaultAvatar',
     mdp CHAR(60) NOT NULL,
     presentation TEXT,
     date_creation TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),

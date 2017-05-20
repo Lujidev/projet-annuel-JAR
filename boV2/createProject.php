@@ -49,6 +49,13 @@ require "lib.php";
                       <?php  skinDisplayCategories($res);?>
 
                       </p>
+                        <div class="item form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Votre image
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="file" name="image" required="required">
+                            </div>
+                        </div>
 
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Description

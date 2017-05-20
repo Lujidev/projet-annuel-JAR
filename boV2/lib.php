@@ -180,31 +180,6 @@ require_once "conf.inc.php";
     }
 
     /**
-     * @author: Jing Lin
-     * @return: Permet d'afficher un tableau avec des données appelées de la base de données. Ceci est la version générique utilisable pour plusieurs tables différentes.'
-     */
-    function pageGerer ($variable) {
-        foreach ($variable as $key => $value) {
-            $db = dbConnect();
-            $query = $db->prepare("SELECT nom_categorie FROM categories WHERE id_categorie=:id_categorie");
-            $query->execute([
-                "id_categorie" => $value['categorie_equipe'],
-            ]);
-            $res = $query->fetch();
-            echo "<tr class='odd gradex'>
-            <td>".$value[0]."</td>
-            <td>".$value[1]."</td>
-            <td>".$value[2]."</td>
-            <td>".$res['nom_categorie']."</td>
-            <td><a href=removeElements.php?id=".$value[0].">Supprimer</a>
-            <td><a href=modifyUser.php?id=".$value[0].">Modifier</a></td>
-            </tr>";
-            print_r($res);
-            echo "<br>";  
-        }
-    }
-
-    /**
      * @author: Ronan Sgaravatto
      * @return: Permet d'afficher un tableau avec des données appelées de la base de données. Utilisé pour gerer les Equipes.
      */
