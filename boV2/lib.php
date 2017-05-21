@@ -74,28 +74,62 @@ require_once "conf.inc.php";
         return $res;
     }
 
-    function getTeams(){
+    function getTeams($user, $role){
 		$db = dbConnect();
-		$query = $db->prepare("SELECT * FROM equipes");
-		$query->execute([]);
+		if ($role != '3'){
+            $query = $db->prepare("SELECT * FROM equipes WHERE createur = :createur");
+            $query->execute([
+                "createur"=>$user
+            ]);
+        }
+        if ($role == '3'){
+            $query = $db->prepare("SELECT * FROM equipes");
+            $query->execute([
+            ]);
+
+        }
+
 		$res = $query->fetchAll();
 
         return $res;
     }
 
-    function getArticles(){
+    function getArticles($user, $role){
 		$db = dbConnect();
-		$query = $db->prepare("SELECT * FROM ARTICLES WHERE is_deleted=0");
-		$query->execute([]);
+
+		if ($role != '3'){
+            $query = $db->prepare("SELECT * FROM ARTICLES WHERE is_deleted=0 AND auteur = :auteur");
+            $query->execute([
+                "auteur"=>$user
+            ]);
+        }
+        if ($role == '3'){
+            $query = $db->prepare("SELECT * FROM ARTICLES WHERE is_deleted=0");
+            $query->execute([
+            ]);
+
+        }
+
+
 		$res = $query->fetchAll();
 
         return $res;
     }
 
-    function getProjects(){
+    function getProjects($user, $role){
 	    $db = dbConnect();
-	    $query = $db->prepare("SELECT * FROM PROJETS");
-	    $query->execute([]);
+        if ($role != '3'){
+            $query = $db->prepare("SELECT * FROM PROJETS WHERE createur = :createur");
+            $query->execute([
+                "createur"=>$user
+            ]);
+
+        }
+        if ($role == '3'){
+            $query = $db->prepare("SELECT * FROM PROJETS");
+            $query->execute([]);
+        }
+
 	    $res = $query->fetchAll();
 
         return $res;
@@ -193,7 +227,7 @@ require_once "conf.inc.php";
             $db = dbConnect();
             $query = $db->prepare("SELECT nom_categorie FROM categories WHERE id_categorie=:id_categorie");
             $query->execute([
-                "id_categorie" => $value['categorie_equipe'],
+                "id_categorie" => $value['categorie_equipe']
             ]);
             $res = $query->fetch();
             echo "<tr>

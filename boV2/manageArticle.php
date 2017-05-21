@@ -1,7 +1,7 @@
 <?php
 require "header.php";
 
-$res = getArticles();
+$res = getArticles($user['id_utilisateur'], $user['droit']);
 
 ?>
 

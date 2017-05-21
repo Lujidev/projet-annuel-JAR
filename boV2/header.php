@@ -1,7 +1,7 @@
 <?php
 session_start();
 require "lib.php";
-$user=isConnected();
+$user = isConnected();
 
 ?>
 <!DOCTYPE html>

@@ -2,7 +2,7 @@
 require "header.php";
 
 
-$res = getProjects();
+$res = getProjects($user['id_utilisateur'], $user['droit']);
 
 ?>
 

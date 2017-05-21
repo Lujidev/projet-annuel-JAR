@@ -1,9 +1,7 @@
 <?php
 require "header.php";
 
-
-
-$res = getTeams();
+$res = getTeams($user['id_utilisateur'], $user['droit']);
 
 ?>
 
@@ -76,7 +74,7 @@ $res = getTeams();
                       </thead>
                       <tbody>
 
-                        <?php manageTeams($res);?>
+                        <?php manageTeams($res, $user['id_utilisateur']);?>
 
                     </form>
                       </tbody>
