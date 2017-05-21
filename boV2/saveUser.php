@@ -1,8 +1,8 @@
 <?php
 	session_start();
+require "lib.php";
 	isConnected();
-	require "conf.inc.php";
-	require "lib.php";
+
 
     if( !empty($_POST['pseudo']) &&
         !empty($_POST['email']) &&

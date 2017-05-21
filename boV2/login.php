@@ -65,19 +65,43 @@
 
         <div id="register" class="animate form registration_form">
           <section class="login_content">
-            <form>
+            <form method="POST" action="saveUser.php" enctype="multipart/form-data">
               <h1>Créer un compte</h1>
+                <div class="item form-group">
+                    <div>
+                        <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" name="pseudo" placeholder="Votre Pseudo" required="required" type="text">
+                    </div>
+                </div>
+                <div class="item form-group">
+                    <div>
+                        <input type="email" id="email" name="email" placeholder="Votre Email" required="required" class="form-control col-md-7 col-xs-12">
+                    </div>
+                </div>
+                <div class="item form-group">
+                    <div>
+                        <input id="password" type="password" name="pwd" data-validate-length="6,8" class="form-control col-md-7 col-xs-12" placeholder="Mot de passe" required="required">
+                    </div>
+                </div>
+                <div class="item form-group">
+                    <div>
+                        <input id="password2" type="password" name="pwd2" data-validate-linked="pwd" class="form-control col-md-7 col-xs-12" placeholder="Confirmation mot de passe" required="required">
+                    </div>
+                </div>
+                <div class="item form-group">
+                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Votre image
+                    </label>
+                    <div>
+                        <input type="file" name="image" required="required">
+                    </div>
+                </div>
+                <div class="item form-group">
+                    <div>
+                        <textarea id="textarea" required="required" name="presentation" placeholder="votre présentation" class="form-control col-md-7 col-xs-12"></textarea>
+                    </div>
+                </div>
+                <input type="hidden" name="from" value="creerUtilisateur">
               <div>
-                <input type="text" class="form-control" placeholder="pseudo" required="" />
-              </div>
-              <div>
-                <input type="email" class="form-control" placeholder="Email" required="" />
-              </div>
-              <div>
-                <input type="password" class="form-control" placeholder="Mot de Passe" required="" />
-              </div>
-              <div>
-                <a class="btn btn-default submit" href="saveUser.php" name="loginRegister">Valider</a>
+                  <button id="send" type="submit" class="btn btn-success">Envoyer</button>
               </div>
 
               <div class="clearfix"></div>
