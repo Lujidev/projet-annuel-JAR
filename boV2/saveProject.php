@@ -1,7 +1,7 @@
 <?php
 session_start();
 	require "lib.php";
-	isConnected();
+	$user = isConnected();
 
 	if (!empty($_POST) && isset($_POST["nom_projet"])){
 
@@ -32,7 +32,7 @@ session_start();
                     $myImage = uploadImage($_FILES["image"], "project");
 
 					//Si on vient de la page creerProjet, alors la requête préparée est une insertion
-					$query = $db->prepare("INSERT INTO PROJETS (nom_projet, description_projet, categorie_projet, img_projet) VALUES(:nom_projet, :description_projet, :categorie_projet, :img_projet)");
+					$query = $db->prepare("INSERT INTO PROJETS (nom_projet, description_projet, categorie_projet, img_projet, createur) VALUES(:nom_projet, :description_projet, :categorie_projet, :img_projet, :createur)");
 					
 					//Récupération des catégories selectionnées par l'utilisateur
 					$categories = getSelectedCategories ($_POST, "p");
@@ -41,7 +41,8 @@ session_start();
 						        'nom_projet' => $nom_projet, 
 						"description_projet" => $description_projet, 
 						  "categorie_projet" => $categories,
-                        "img_projet"=>$myImage
+                        "img_projet"=>$myImage,
+                        "createur"=>$user['id_utilisateur']
 					];
 
 				}

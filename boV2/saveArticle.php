@@ -2,7 +2,7 @@
 session_start();
 	require "conf.inc.php";
 	require "lib.php";
-	isConnected();
+	$user = isConnected();
 
 	if (!empty($_POST)
 		&& isset($_POST["nom_article"])
@@ -45,7 +45,7 @@ session_start();
 
 
 					//Si on vient de la page creerArticle, alors la requête préparée est une insertion
-					$query = $db->prepare("INSERT INTO ARTICLES (nom_article, description_article, categorie_article, contenu_article, image) VALUES(:nom_article, :description_article, :categorie_article, :contenu_article, :image)");
+					$query = $db->prepare("INSERT INTO ARTICLES (nom_article, description_article, categorie_article, contenu_article, image, auteur) VALUES(:nom_article, :description_article, :categorie_article, :contenu_article, :image, :auteur)");
 					
 					//Récupération des catégories selectionnées par l'utilisateur
 					$categories = getSelectedCategories ($_POST, "a");
@@ -55,7 +55,8 @@ session_start();
 						"description_article" => $description_article, 
 						  "categorie_article" => $categories,
 						  	"contenu_article" => $_POST["contenu_article"],
-                        "image" => $myImage
+                        "image" => $myImage,
+                        "auteur"=> $user['id_utilisateur']
 					];
 
 				}

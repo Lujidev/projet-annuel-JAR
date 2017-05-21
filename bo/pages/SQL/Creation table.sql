@@ -14,6 +14,8 @@ CREATE TABLE EQUIPES(
     nom_equipe VARCHAR(50) NOT NULL,
     description_equipe VARCHAR(255),
     nb_article INT NOT NULL DEFAULT '0',
+    createur INT NOT NULL REFERENCES UTILISATEURS(id_utilisateur),
+    equipier VARCHAR(255),
     /*categorie_equipe INT REFERENCES CATEGOERIES(id_categorie),*/
     categorie_equipe VARCHAR (100),
     PRIMARY KEY(nom_equipe)
@@ -26,6 +28,8 @@ CREATE TABLE PROJETS(
     id_projet INT NOT NULL AUTO_INCREMENT,
     nom_projet VARCHAR(50) NOT NULL,
     description_projet TEXT,
+    createur INT NOT NULL REFERENCES UTILISATEURS(id_utilisateur),
+    equipier VARCHAR(255),
     /*categorie_projet INT REFERENCES CATEGOERIES(id_categorie),*/
     categorie_projet VARCHAR(100) REFERENCES CATEGORIES(id_categorie),
     /*PRIMARY KEY (id_projet)*/
@@ -42,11 +46,13 @@ CREATE TABLE PROJETS(
         description_article VARCHAR(100) NOT NULL,
         contenu_article TEXT NOT NULL,
         image VARCHAR(255) DEFAULT 'defaultArticle',
+        auteur INT NOT NULL REFERENCES UTILISATEURS(id_utilisateur),
         date_publication TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
         date_modification TIMESTAMP NULL DEFAULT NULL,
         is_delete BOOLEAN NOT NULL DEFAULT FALSE,
         /*categorie_article INT REFERENCES CATEGOERIES(id_categorie),*/
         categorie_article VARCHAR(100),
+
         PRIMARY KEY (id_article)
 
     );
@@ -56,6 +62,8 @@ CREATE TABLE COMMENTAIRES(
     
     id_commentaire INT NOT NULL AUTO_INCREMENT,
     contenu TEXT,
+    auteur INT NOT NULL REFERENCES UTILISATEURS(id_article),
+    lien_article INT NOT NULL REFERENCES ARTICLES(id_utilisateur),
     date_publication TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     date_modification TIMESTAMP NULL DEFAULT NULL,
     is_delete BOOLEAN NOT NULL DEFAULT FALSE,

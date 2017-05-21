@@ -1,7 +1,7 @@
 <?php
 session_start();
 	require "lib.php";
-	isConnected();
+	$user = isConnected();
 
 	if (!empty($_POST) && isset($_POST["nom_equipe"])){
 
@@ -30,7 +30,7 @@ session_start();
 				if (!verifyPresent("EQUIPES", "nom_equipe", $nom_equipe)){
 
 					//Si on vient de la page creerEquipe, alors la requête préparée est une insertion
-					$query = $db->prepare("INSERT INTO EQUIPES (nom_equipe, description_equipe, categorie_equipe) VALUES(:nom_equipe, :description_equipe, :categorie_equipe)");
+					$query = $db->prepare("INSERT INTO EQUIPES (nom_equipe, description_equipe, categorie_equipe, createur) VALUES(:nom_equipe, :description_equipe, :categorie_equipe, :createur)");
 					
 					//Récupération des catégories selectionnées par l'utilisateur
 					$categories = getSelectedCategories ($_POST, "e");
@@ -38,7 +38,8 @@ session_start();
 					$dataToInsert = [
 						        "nom_equipe" => $nom_equipe, 
 						"description_equipe" => $description_equipe, 
-						  "categorie_equipe" => $categories
+						  "categorie_equipe" => $categories,
+                        "createur"=>$user['id_utilisateur']
 					];
 
 				}
