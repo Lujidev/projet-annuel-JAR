@@ -41,6 +41,8 @@ $user = isConnected();
     <link href="vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
     <link href="vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
 
+      <!--reCaptcha-->
+      <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
 
   <body class="nav-md">
