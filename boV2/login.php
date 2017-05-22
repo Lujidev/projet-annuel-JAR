@@ -20,6 +20,8 @@
 
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
+
+      <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
 
   <body class="login">
@@ -68,6 +70,9 @@
             <form method="POST" action="saveUser.php" enctype="multipart/form-data">
               <h1>Créer un compte</h1>
                 <div class="item form-group">
+                    <div class="g-recaptcha" data-sitekey="6LePgyIUAAAAAHLk0tRDD-vKvSEWBQc4AVCz5sPB"></div>
+                </div>
+                <div class="item form-group">
                     <div>
                         <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" name="pseudo" placeholder="Votre Pseudo" required="required" type="text">
                     </div>
@@ -100,7 +105,7 @@
                     </div>
                 </div>
                 <input type="hidden" name="from" value="creerUtilisateur">
-              <div>
+              <div class="item form-group">
                   <button id="send" type="submit" class="btn btn-success">Envoyer</button>
               </div>
 
