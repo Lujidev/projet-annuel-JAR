@@ -68,6 +68,9 @@ require "header.php";
                           <textarea id="textarea" required="required" name="presentation" class="form-control col-md-7 col-xs-12"></textarea>
                         </div>
                       </div>
+                        <div class="item form-group">
+                            <div class="g-recaptcha" data-sitekey="6LePgyIUAAAAAHLk0tRDD-vKvSEWBQc4AVCz5sPB"></div>
+                        </div>
 
                     <input type="hidden" name="from" value="creerUtilisateur">
                       <div class="ln_solid"></div>
