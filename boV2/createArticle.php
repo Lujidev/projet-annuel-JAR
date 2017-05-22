@@ -71,6 +71,7 @@ $res = $query->fetchAll();
                         </div>
                       </div>
 
+
                     <input type="hidden" name="from" value="creerArticle">
                       <div class="ln_solid"></div>
                       <div class="form-group">
