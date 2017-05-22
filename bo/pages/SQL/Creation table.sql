@@ -49,7 +49,7 @@ CREATE TABLE PROJETS(
         auteur INT NOT NULL REFERENCES UTILISATEURS(id_utilisateur),
         date_publication TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
         date_modification TIMESTAMP NULL DEFAULT NULL,
-        is_delete BOOLEAN NOT NULL DEFAULT FALSE,
+        is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
         /*categorie_article INT REFERENCES CATEGOERIES(id_categorie),*/
         categorie_article VARCHAR(100),
 
@@ -66,7 +66,7 @@ CREATE TABLE COMMENTAIRES(
     lien_article INT NOT NULL REFERENCES ARTICLES(id_article),
     date_publication TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     date_modification TIMESTAMP NULL DEFAULT NULL,
-    is_delete BOOLEAN NOT NULL DEFAULT FALSE,
+    is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
     article INT REFERENCES articles(id_article),
     PRIMARY KEY (id_commentaire)
 
