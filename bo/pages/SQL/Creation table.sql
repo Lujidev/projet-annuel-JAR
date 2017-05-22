@@ -62,8 +62,8 @@ CREATE TABLE COMMENTAIRES(
     
     id_commentaire INT NOT NULL AUTO_INCREMENT,
     contenu TEXT,
-    auteur INT NOT NULL REFERENCES UTILISATEURS(id_article),
-    lien_article INT NOT NULL REFERENCES ARTICLES(id_utilisateur),
+    auteur INT NOT NULL REFERENCES UTILISATEURS(id_utilisateur),
+    lien_article INT NOT NULL REFERENCES ARTICLES(id_article),
     date_publication TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     date_modification TIMESTAMP NULL DEFAULT NULL,
     is_delete BOOLEAN NOT NULL DEFAULT FALSE,
@@ -108,5 +108,18 @@ CREATE TABLE RASSEMBLE(
     droit INT REFERENCES DROITS(id_droit),
     token_temp CHAR(32),
     PRIMARY KEY (utilisateur, nom_equipe)
+
+);
+
+CREATE TABLE MESSAGESP(
+
+    id_mp INT NOT NULL AUTO_INCREMENT,
+    sujet VARCHAR(255),
+    contenu_mp TEXT,
+    auteur_mp INT NOT NULL REFERENCES UTILISATEURS(id_article),
+    destinataire_mp INT NOT NULL REFERENCES UTILISATEURS(id_article),
+    is_read_mp BOOLEAN NOT NULL DEFAULT FALSE,
+    date_publication_mp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    PRIMARY KEY (id_mp)
 
 );
