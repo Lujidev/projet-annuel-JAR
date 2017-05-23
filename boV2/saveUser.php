@@ -30,11 +30,6 @@ require "lib.php";
 
         if ($decode['success'] == true) {
 
-
-
-
-
-
             $pseudo = trim($_POST["pseudo"]);
             if (strlen($pseudo) > 50 || strlen($pseudo) < 3 ){
                 $error = true;

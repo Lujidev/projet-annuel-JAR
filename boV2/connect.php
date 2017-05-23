@@ -4,10 +4,6 @@
 
     $msg_error = '';
 
-echo $_POST["email"];
-echo $_POST["mdp"];
-
-
     /*Vérification si le formulaire a été remplis*/    
     if (isset($_POST["email"]) && isset($_POST["mdp"]))
     {
