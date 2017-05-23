@@ -3,7 +3,7 @@ require "lib.php";
 /*$user = isConnected();
 $role = $user['droit'];
 */
-$id = intval($_GET['id_mp']);
+$id = intval($_POST['id_mp']);
 
 $db = dbConnect();
 
@@ -21,6 +21,8 @@ $res = $query->fetch();
         "id_utilisateur"=>$id
     ]);
 $user = $query->fetch();
+
+is_read($res['id_mp'], $_POST['is_read_mp']);
 
 echo '                      <div class="mail_heading row">
                             <div class="col-md-8">

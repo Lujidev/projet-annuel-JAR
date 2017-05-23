@@ -119,8 +119,9 @@ $user = isConnected();
                   </li>';
 
                     }?>
-
+                    <li><a href="mp.php"><i class="fa fa-envelope"></i> Messages Privés </a></li>
                   <li><a href="#"><i class="fa fa-home"></i> Gérer les commentaires </a></li>
+
                 </ul>
               </div>
               <!--<div class="menu_section">
