@@ -1,5 +1,8 @@
 <?php
 require "header.php";
+
+$res = getMessages($user['id_utilisateur'], $user['droit']);
+
 ?>
         <!-- page content -->
         <div class="right_col" role="main">
@@ -50,35 +53,26 @@ require "header.php";
                     <div class="row">
                       <div class="col-sm-3 mail_list_column">
                         <button id="compose" class="btn btn-sm btn-success btn-block" type="button">COMPOSE</button>
-                        <a href="#" onclick="getMP('1')">
-                          <div class="mail_list">
-                            <div class="left">
-                              <i class="fa fa-circle"></i> <i class="fa fa-edit"></i>
-                            </div>
-                            <div class="right">
-                              <h3>Dennis Mugo <small>3.00 PM</small></h3>
-                              <p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
-                            </div>
-                          </div>
-                        </a>
 
-                        <a href="#">
+                          <?php messagesList($res) ?>
+<!--
+                        <a href="#" onclick="getMP('2')">
                           <div class="mail_list">
                             <div class="left">
                               <i class="fa fa-star"></i>
                             </div>
                             <div class="right">
                               <h3>Jane Nobert <small>4.09 PM</small></h3>
-                              <p>Ut enim ad minim veniam, quis nostrud exercitation enim ad minim veniam, quis nostrud exercitation...</p>
+                              <p>contenu messages</p>
                             </div>
                           </div>
-                        </a>
+                        </a>-->
                       </div>
                       <!-- /MAIL LIST -->
 
                       <!-- CONTENT MAIL -->
                       <div class="col-sm-9 mail_view">
-                        <div class="inbox-body">
+                        <div class="inbox-body" id="text">
                           <div class="mail_heading row">
                             <div class="col-md-8">
                               <div class="btn-group">

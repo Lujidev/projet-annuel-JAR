@@ -38,7 +38,7 @@ require_once "conf.inc.php";
 
     function disconnect(){
         //if (isset($_SESSION["access_token"])){
-        session_start();
+        //session_start();
     	$db = dbConnect();
     	$query = $db->prepare("UPDATE UTILISATEURS SET access_token=NULL WHERE email=:email");
     	$query->execute(["email"=>$_SESSION["email"]]);
@@ -131,6 +131,25 @@ require_once "conf.inc.php";
         }
 
 	    $res = $query->fetchAll();
+
+        return $res;
+    }
+
+    function getMessages($user, $role){
+        $db = dbConnect();
+        if ($role != '3'){
+            $query = $db->prepare("SELECT * FROM MESSAGESP WHERE auteur_mp = :auteur_mp");
+            $query->execute([
+                "auteur_mp"=>$user
+            ]);
+
+        }
+        if ($role == '3'){
+            $query = $db->prepare("SELECT * FROM MESSAGESP");
+            $query->execute([]);
+        }
+
+        $res = $query->fetchAll();
 
         return $res;
     }
@@ -519,3 +538,41 @@ require_once "conf.inc.php";
 
         }
     }
+
+/**
+ * @author: Jing LIN
+ * @return: Affiche la list des messages privés.
+ */
+
+function messagesList($data){
+
+    $db = dbConnect();
+
+    foreach ($data as $value){
+
+        $id = $value['auteur_mp'];
+
+        $query = $db->prepare("SELECT pseudo FROM UTILISATEURS WHERE id_utilisateur = :id_utilisateur");
+        $query->execute([
+            "id_utilisateur"=>$id
+        ]);
+        $user = $query->fetch();
+
+        echo '<a href="#" onclick="getMP('.$value["id_mp"].')">
+                          <div class="mail_list">
+                            <div class="left">
+                              <i class="fa fa-circle"></i> <i class="fa fa-edit"></i>
+                            </div>
+                            <div class="right">
+                              <h3>'.$user["pseudo"].' <small>'.$value["date_publication_mp"].'</small></h3>
+                              <p>'.substr($value['contenu_mp'], 0, 75).'</p>
+                            </div>
+                          </div>
+                        </a>';
+
+    }
+
+
+
+
+}
