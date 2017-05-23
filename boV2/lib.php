@@ -558,10 +558,23 @@ function messagesList($data){
         ]);
         $user = $query->fetch();
 
-        echo '<a href="#" onclick="getMP('.$value["id_mp"].')">
+        if ($value['is_read_mp'] == '1'){
+            echo '<a href="#" onclick="getMP('.$value["id_mp"].')">
                           <div class="mail_list">
                             <div class="left">
-                              <i class="fa fa-circle"></i> <i class="fa fa-edit"></i>
+                              <i class="fa fa-envelope-o"></i>
+                            </div> 
+                            <div class="right">
+                              <h3>'.$user["pseudo"].' <small>'.$value["date_publication_mp"].'</small></h3>
+                              <p>'.substr($value['contenu_mp'], 0, 75).'</p>
+                            </div>
+                          </div>
+                        </a>';
+        }else{
+            echo '<a href="#" onclick="getMP('.$value["id_mp"].')">
+                          <div class="mail_list">
+                            <div class="left">
+                              <i class="fa fa-envelope"></i>
                             </div>
                             <div class="right">
                               <h3>'.$user["pseudo"].' <small>'.$value["date_publication_mp"].'</small></h3>
@@ -569,10 +582,25 @@ function messagesList($data){
                             </div>
                           </div>
                         </a>';
+        }
+
 
     }
 
+}
 
+function is_read($msg ,$is_read){
+    if ($is_read == '1'){
+        $db = dbConnect();
 
+        $query = $db->prepare(
+            "UPDATE MESSAGESP SET is_read_mp ='1' WHERE id_mp=:id_mp"
+        );
+
+        $query->execute([
+            "id_mp"=>$msg
+        ]);
+
+    }
 
 }
