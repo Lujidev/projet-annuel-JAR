@@ -49,13 +49,19 @@ if (isset($_POST['jsVerif'])){
 
             $query = $db->prepare("INSERT INTO MESSAGESP (sujet, contenu_mp, auteur_mp, destinataire_mp) VALUES(:sujet, :contenu_mp, :auteur_mp, :destinataire_mp)");
 
-            //=====================================================================//
             $query->execute([
                 'sujet' => $sujet,
                 "contenu_mp" => $contenu_mp,
                 "auteur_mp" => $user['id_utilisateur'],
                 "destinataire_mp" => $res['id_utilisateur']
                 ]);
+
+            $img = getAuthorImg($user['id_utilisateur']);
+            $img = "upload/user/".$img;
+
+            addNotif($img, $sujet, $contenu_mp, $res['id_utilisateur'],'message');
+
+
             header("location: mp.php");
 
         } //=====================================================================//

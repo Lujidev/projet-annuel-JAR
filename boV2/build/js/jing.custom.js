@@ -127,11 +127,6 @@ function anwser(id_sender, id_reciver, msg, sujet){
 
     document.getElementById("text").innerHTML = 'sender:'+id_sender+'reciver:'+id_reciver+'data:'+msg+'sujet:'+sujet+'lafin';
 
-
-
-
-
-
     /*'<form role="form" method="POST" action="saveMp.php" enctype="multipart/form-data" class="form-horizontal form-label-left" novalidate>' +
         '<div class="item form-group">' +
         '<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Destinataire<span class="required">*</span></label>' +
@@ -165,5 +160,15 @@ function anwser(id_sender, id_reciver, msg, sujet){
         '</form>';*/
 
 
+
+}
+
+function viewNotif(id_notif){
+
+    var request = newXMLHttpRequest();
+
+    request.open("POST", "deleteNotification.php", true);
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.send("id_notif="+id_notif);
 
 }

@@ -69,6 +69,8 @@
     <script src="vendors/jszip/dist/jszip.min.js"></script>
     <script src="vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="vendors/pdfmake/build/vfs_fonts.js"></script>
-	
+
+        <!--Custom JS -->
+        <script src="build/js/jing.custom.js"></script>
   </body>
 </html>
