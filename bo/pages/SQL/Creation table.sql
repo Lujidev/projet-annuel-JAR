@@ -126,3 +126,14 @@ CREATE TABLE MESSAGESP(
     PRIMARY KEY (id_mp)
 
 );
+
+CREATE TABLE NOTIFICATIONS(
+    id_notif INT NOT NULL AUTO_INCREMENT,
+    preview VARCHAR(255),
+    sujet VARCHAR(255),
+    notif_desc VARCHAR(255),
+    id_link INT REFERENCES UTILISATEURS(id_utilisateur),
+    filter VARCHAR(30),
+    send_time TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
+    PRIMARY KEY (id_notif)
+);
