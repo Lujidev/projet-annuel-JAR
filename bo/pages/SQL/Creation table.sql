@@ -118,7 +118,10 @@ CREATE TABLE MESSAGESP(
     contenu_mp TEXT,
     auteur_mp INT NOT NULL REFERENCES UTILISATEURS(id_article),
     destinataire_mp INT NOT NULL REFERENCES UTILISATEURS(id_article),
+    pj_mp VARCHAR(500),
     is_read_mp BOOLEAN NOT NULL DEFAULT FALSE,
+    is_deleted_auteur BOOLEAN NOT NULL DEFAULT FALSE,
+    is_deleted_destinataire BOOLEAN NOT NULL DEFAULT FALSE,
     date_publication_mp TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     PRIMARY KEY (id_mp)
 

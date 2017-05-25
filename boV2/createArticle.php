@@ -57,15 +57,13 @@ $res = $query->fetchAll();
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Contenu article <span class="required">*</span>
-                        </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Contenu article <span class="required">*</span></label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                           <textarea id="textarea" required="required" name="contenu_article" class="form-control col-md-7 col-xs-12"></textarea>
                         </div>
                       </div>
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Votre image
-                        </label>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Votre image</label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
                            <input type="file" name="image" required="required">
                         </div>
