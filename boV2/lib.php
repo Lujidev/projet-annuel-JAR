@@ -690,7 +690,7 @@ function showNotif($id){
 
 /**
  * @author: Jing LIN
- * @return: affiche le nombre de notification.
+ * @return: return le nombre de notification.
  */
 
 
@@ -700,6 +700,25 @@ function nbNotif($id){
     $query = $db->prepare("SELECT COUNT(id_notif) AS nbNotif FROM NOTIFICATIONS WHERE id_link=:id_link");
     $query->execute( [
         "id_link"=>$id
+    ] );
+
+    $res = $query->fetch();
+
+    return $res['nbNotif'];
+
+}
+
+/**
+ * @author: Jing LIN
+ * @return: return le nombre de message non lu
+ */
+
+function nbMsgNotRead($id){
+
+    $db = dbConnect();
+    $query = $db->prepare("SELECT COUNT(id_mp) AS nbNotif FROM MESSAGESP WHERE destinataire_mp=:destinataire_mp AND is_read_mp = '0'");
+    $query->execute( [
+        "destinataire_mp"=>$id
     ] );
 
     $res = $query->fetch();
@@ -721,3 +740,5 @@ function getAuthorImg($id){
     return $res['avatar'];
 
 }
+
+
