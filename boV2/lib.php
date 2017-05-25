@@ -616,3 +616,108 @@ function is_read($msg ,$is_read){
     }
 
 }
+
+/**
+ * @author: Jing LIN
+ * @return: Fonction qui ajoute une notification à la bdd.
+ */
+
+
+function addNotif($preview, $sujet, $notif_desc, $id_link, $filter){
+
+    $db = dbConnect();
+    $query = $db->prepare("INSERT INTO NOTIFICATIONS (preview, sujet, notif_desc, id_link, filter) VALUES(:preview, :sujet, :notif_desc, :id_link, :filter)");
+    $query->execute( [
+        "preview"=>$preview,
+        "sujet"=>$sujet,
+        "notif_desc"=>$notif_desc,
+        "id_link"=>$id_link,
+        "filter"=>$filter
+    ] );
+
+
+}
+
+/**
+ * @author: Jing LIN
+ * @return: Affiche les notifications
+ */
+
+function showNotif($id){
+
+    $db = dbConnect();
+
+    $query = $db->prepare("SELECT * FROM NOTIFICATIONS WHERE id_link=:id_link");
+    $query->execute( [
+        "id_link"=>$id
+    ] );
+
+    $res = $query->fetchAll();
+
+    foreach ($res as $value){
+
+        if ($value['filter'] == 'message'){
+
+            echo '      <li>
+                      <a href="mp.php" onclick="viewNotif('.$value["id_notif"].')">
+                        <span class="image"><img src="'.$value["preview"].'" alt="Profile Image" /></span>
+                        <span>
+                          <span>'.$value["sujet"].'</span>
+                          <span class="time">'.$value["send_time"].'</span>
+                        </span>
+                        <span class="message">
+                          '.$value["notif_desc"].'
+                        </span>
+                      </a>
+                    </li>';
+
+        }
+
+
+    };
+
+
+
+
+
+
+
+
+
+
+
+}
+
+/**
+ * @author: Jing LIN
+ * @return: affiche le nombre de notification.
+ */
+
+
+function nbNotif($id){
+
+    $db = dbConnect();
+    $query = $db->prepare("SELECT COUNT(id_notif) AS nbNotif FROM NOTIFICATIONS WHERE id_link=:id_link");
+    $query->execute( [
+        "id_link"=>$id
+    ] );
+
+    $res = $query->fetch();
+
+    return $res['nbNotif'];
+
+}
+
+function getAuthorImg($id){
+
+    $db = dbConnect();
+    $query = $db->prepare("SELECT avatar FROM UTILISATEURS WHERE id_utilisateur=:id_utilisateur");
+    $query->execute( [
+        "id_utilisateur"=>$id
+    ] );
+
+    $res = $query->fetch();
+
+    return $res['avatar'];
+
+}

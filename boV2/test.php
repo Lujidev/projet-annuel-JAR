@@ -1,107 +1,78 @@
 <?php
 require "header.php";
-
-$recu = getMessages($user['id_utilisateur']);
-$send = getSendedMessages($user['id_utilisateur']);
-
 ?>
+
 <!-- page content -->
-<div class="right_col" role="main">
-    <div class="">
+        <div class="right_col" role="main">
+          <div class="">
+            <div class="page-title">
+              <div class="title_left">
+                <h3><?php
 
-        <div class="page-title">
-            <div class="title_left">
-                <h3>Inbox Design <small>Some examples to get you started</small></h3>
-            </div>
 
-            <div class="title_right">
+
+                    echo nbNotif($user['id_utilisateur']);
+
+
+                    ?></h3>
+              </div>
+
+              <div class="title_right">
                 <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search for...">
-                        <span class="input-group-btn">
-                      <button class="btn btn-default" type="button">Go!</button>
-                    </span>
-                    </div>
-                </div>
+                 </div>
+              </div>
             </div>
-        </div>
+            <div class="clearfix"></div>
 
-        <div class="clearfix"></div>
-
-        <div class="row">
-            <div class="col-md-12">
+            <div class="row">
+              <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
-                    <div class="x_content">
-                        <div class="row">
-                            <div class="" role="tabpanel" data-example-id="togglable-tabs">
-                                <ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-                                    <li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Reçu(s)</a>
-                                    </li>
-                                    <li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Envoyé(s)</a>
-                                    </li>
-                                </ul>
-                                <div id="myTabContent" class="tab-content">
-                                    <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                                        <div class="col-sm-3 mail_list_column">
-                                            <button class="btn btn-sm btn-success btn-block" onclick="sendMp(<?php echo $user["id_utilisateur"]?>)">Nouveau Message</button>
+                  <div class="x_content">
 
-                                            <?php messagesList($recu) ?>
+                    <form role="form" method="POST" action="saveCategory.php" enctype="multipart/form-data" class="form-horizontal form-label-left" novalidate>
 
-                                        </div>
-                                        <!-- /MAIL LIST -->
-                                    </div>
-                                    <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
-                                        <div class="col-sm-3 mail_list_column">
-                                            <button class="btn btn-sm btn-success btn-block" onclick="sendMp(<?php echo $user["id_utilisateur"]?>)">Nouveau Message</button>
+                      <p>Veuillez remplir ce formulaire pour créer un Projet
+</p>
+                      <span class="section">Info nécessaire</span>
 
-                                            <?php messagesList($send) ?>
-
-                                        </div>
-                                        <!-- /MAIL LIST -->
-                                    </div>
-                                    <!-- CONTENT MAIL -->
-                                    <div class="col-sm-9 mail_view">
-                                        <div class="inbox-body" id="text"></div>
-                                    </div>
-                                    <!-- /CONTENT MAIL -->
-                                </div>
-                            </div>
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Nom de la catégorie <span class="required">*</span>
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" name="nom_categorie" placeholder="Plus de 2 lettres" required="required" type="text">
                         </div>
-                    </div>
+                      </div>
+
+                      <div class="item form-group">
+                      <label class="control-label col-md-3 col-sm-3 col-xs-12">Filtre: </label>
+                        <div class="col-md-3 col-sm-3 col-xs-12">
+                              <select class="form-control" name="filter">
+                                  <option value="a">article</option>
+                                  <option value="p">projet / équipe</option>
+                              </select>
+                        </div>
+                      </div>
+
+                      <div class="item form-group">
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Description
+                        </label>
+                        <div class="col-md-6 col-sm-6 col-xs-12">
+                          <textarea id="textarea" required="required" name="description_categorie" class="form-control col-md-7 col-xs-12"></textarea>
+                        </div>
+                      </div>
+
+                    <input type="hidden" name="from" value="creerCategorie">
+                      <div class="ln_solid"></div>
+                      <div class="form-group">
+                        <div class="col-md-6 col-md-offset-3">
+                          <button type="reset" class="btn btn-primary">Reset</button>
+                          <button id="send" type="submit" class="btn btn-success">Envoyer</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-
-<!-- /page content -->
-
-<!-- footer content -->
-<footer>
-    <div class="pull-right">
-        Admin Dumb IT
-    </div>
-    <div class="clearfix"></div>
-</footer>
-<!-- /footer content -->
-
-<!-- jQuery -->
-<script src="vendors/jquery/dist/jquery.min.js"></script>
-<!-- Bootstrap -->
-<script src="vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- FastClick -->
-<script src="vendors/fastclick/lib/fastclick.js"></script>
-<!-- NProgress -->
-<script src="vendors/nprogress/nprogress.js"></script>
-<!-- bootstrap-wysiwyg -->
-<script src="vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
-<script src="vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
-<script src="vendors/google-code-prettify/src/prettify.js"></script>
-
-<!-- Custom Theme Scripts -->
-<script src="build/js/custom.min.js"></script>
-
-<!--Jing's custom Scripts-->
-<script src="build/js/jing.custom.js"></script>
-</body>
-</html>
