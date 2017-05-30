@@ -12,7 +12,7 @@
 
         $db = dbConnect();
         //je récupère mdp hashé dans la bdd pour l'email saisi
-        $query = $db->prepare("SELECT id_utilisateur, mdp FROM UTILISATEURS WHERE email=:email AND is_deleted=0;");
+        $query = $db->prepare("SELECT id_utilisateur, mdp FROM UTILISATEURS WHERE email=:email AND is_deleted=0 AND activation=1;");
         $query->execute(["email"=>$_POST["email"]]);
         $result = $query->fetch();
         

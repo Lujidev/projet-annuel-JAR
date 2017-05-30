@@ -601,6 +601,11 @@ function messagesList($data, $id_user){
 
 }
 
+/**
+ * @author: Jing LIN
+ * @return: Fonction qui update la colonne is_read_mp des messages privés.
+ */
+
 function is_read($msg ,$is_read){
     if ($is_read == '1'){
         $db = dbConnect();
@@ -727,6 +732,12 @@ function nbMsgNotRead($id){
 
 }
 
+/**
+ * @author: Jing LIN
+ * @return: retour l'avatar de la personne avec son $id.
+ */
+
+
 function getAuthorImg($id){
 
     $db = dbConnect();
@@ -742,3 +753,44 @@ function getAuthorImg($id){
 }
 
 
+/**
+ * @author: Jing LIN
+ * @return: Permet d'envoyer un email de confirmation permettant à la personne d'activer son compte.
+ * Entrée: $email: email de l'utilisateur, $validationKey: La clé de validation généré pour la comparaison et l'activation.
+ * Utilisation de phpMailer
+ */
+
+function sendConfirmationMail($email, $validationKey){
+
+    require 'phpmailer/PHPMailerAutoload.php';
+
+    $mailer = New PhpMailer();
+    $mailer->IsSMTP();
+    $mailer->IsHTML=TRUE;
+    $mailer->Username = "dumbitproject@gmail.com";
+    $mailer->Password = "Project123456";
+    $mailer->Host = "smtp.gmail.com";
+    $mailer->Port = 465;
+    $mailer->SMTPSecure = 'ssl';
+    $mailer->SMTPAuth = true;
+
+    $mailer->FromName = "Dumb IT";
+    $mailer->addAddress($email);
+
+    $mailer->Subject="Activation de votre compte DumbIT";
+
+    $data = "Bonjour, vous avez récement crée un compte sur DumbIT. Cliquez sur le lien pour activer votre compte.
+    
+    Activer votre compte: http://localhost/projet-annuel-JAR/boV2/activate.php?token=".$validationKey;
+    $msg = utf8_decode($data);
+    $mailer->Body= $msg;
+
+    if(!$mailer->send()) {
+        echo 'Message could not be sent.';
+        echo 'Mailer Error: ' . $mailer->ErrorInfo;
+    } else {
+        echo 'Message has been sent';
+    }
+
+
+}
