@@ -92,7 +92,7 @@ CREATE TABLE UTILISATEURS(
     presentation TEXT,
     date_creation TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP(),
     date_modification TIMESTAMP NULL DEFAULT NULL,
-    activation BOOLEAN NOT NULL DEFAULT FALSE,
+    activation VARCHAR(255) NOT NULL DEFAULT FALSE,
     is_deleted BOOLEAN NOT NULL DEFAULT FALSE,
     access_token CHAR(32),
     droit INT REFERENCES DROITS(id_droit),

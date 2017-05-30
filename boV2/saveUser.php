@@ -75,10 +75,12 @@ require "lib.php";
                         $myImage = uploadImage($_FILES["image"], "user");
 
                         //Si on vient de la page creerUtilisateur, alors la requête préparée est une insertion
-                        $query = $db->prepare("INSERT INTO UTILISATEURS (pseudo, email, avatar, mdp, presentation, droit) VALUES(:pseudo, :email, :avatar, :pwd, :pres, :droit)");
+                        $query = $db->prepare("INSERT INTO UTILISATEURS (pseudo, email, avatar, mdp, presentation, droit, activation) VALUES(:pseudo, :email, :avatar, :pwd, :pres, :droit, :activation)");
 
                         //Récupération des catégories selectionnées par l'utilisateur
                         $pwd = password_hash($_POST["pwd"], PASSWORD_DEFAULT);
+
+                        $activationKey = md5(uniqid().time()."sjdfhjdgfjqsdkjgshjvhfv");
 
                         $dataToInsert = [
                             "pseudo" => $pseudo,
@@ -86,8 +88,11 @@ require "lib.php";
                             "avatar"=> $myImage,
                             "pwd" => $pwd,
                             "pres" => $presentation,
-                            "droit" => 2
+                            "droit" => 2,
+                            "activation"=> $activationKey
                         ];
+
+                        sendConfirmationMail($email,$activationKey);
 
                     }
                     else{// Le nom est déjà dans la bdd
