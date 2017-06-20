@@ -22,7 +22,7 @@ require "header.php";
                 <div class="x_panel">
                   <div class="x_content">
 
-                    <form role="form" method="POST" action="saveUser.php" enctype="multipart/form-data" class="form-horizontal form-label-left" novalidate>
+                    <form role="form" method="POST" action="saveUser.php" enctype="multipart/form-data" class="form-horizontal form-label-left">
 
                       <p>Veuillez remplir ce formulaire pour vous inscrire
                       </p>
@@ -30,11 +30,12 @@ require "header.php";
 
 
                       <div class="item form-group">
-                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Votre Pseudo <span class="required">*</span>
+                        <label class="control-label col-md-3 col-sm-3 col-xs-12">Votre Pseudo <span class="required">*</span>
                         </label>
                         <div class="col-md-6 col-sm-6 col-xs-12">
-                          <input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" name="pseudo" placeholder="Plus de 2 lettres" required="required" type="text">
+                          <input id="name" class="form-control col-md-7 col-xs-12" name="pseudo" placeholder="Plus de 2 lettres" type="text" onblur="checkPseudo('name')" required>
                         </div>
+                          <span id="create_user_pseudo_error" class="label label-danger"></span>
                       </div>
                       <div class="item form-group">
                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email <span class="required">*</span>
@@ -90,6 +91,8 @@ require "header.php";
           </div>
         </div>
         <!-- /page content -->
+
+<script src="build/js/verif.jing.js"></script>
 
 
 

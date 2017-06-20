@@ -1,5 +1,6 @@
 <?php
-require "lib.php";
+require "mpLib.php";
+require "../lib.php";
 /*$user = isConnected();
 $role = $user['droit'];
 */
@@ -28,11 +29,18 @@ if ($id_user == $res['auteur_mp']){
     ]);
     $user = $query->fetch();
 
+    $params = [
+        $id_user,
+        $res["destinataire_mp"],
+        $res["contenu_mp"],
+        $res["sujet"]
+    ];
+    $anwser_params = "'".implode( "','",$params)."'";
 
   echo '                  <div class="mail_heading row">
                             <div class="col-md-8">
                               <div class="btn-group">
-                                <a class="fa fa-reply btn btn-sm btn-default" onclick="anwser('.$id_user.','.$res["destinataire_mp"].','.$res["contenu_mp"].','.$res["sujet"].')" > Répondre</a>
+                                <a class="fa fa-reply btn btn-sm btn-default" onclick="anwser('.$anwser_params.')" > Répondre</a>
                                 <a class="fa fa-trash-o btn btn-sm btn-default" href="deleteMp.php?id_mp='.$res['id_mp'].'&id='.$id_user.'"></a>
                                 <a class="fa fa-print btn btn-sm btn-default" href="#"></a>
                                 <a class="fa fa-share btn btn-sm btn-default" href="#"> Transférer</a>
@@ -57,32 +65,6 @@ if ($id_user == $res['auteur_mp']){
                           </div>
                           <div class="view-mail">
                            '.$res["contenu_mp"].'
-                          </div>
-                          <div class="attachment">
-                            <p>
-                              <span><i class="fa fa-paperclip"></i> Les pièces joints (pas encore fait) — </span>
-                              <a href="#">Télécharger les pjs</a> |
-                              <a href="#">regarder les images</a>
-                            </p>
-                            <ul>
-                              <li>
-                                <a href="#" class="atch-thumb">
-                                  <img src="images/inbox.png" alt="img" />
-                                </a>
-
-                                <div class="file-name">
-                                  image-name.jpg
-                                </div>
-                                <span>12KB</span>
-
-
-                                <div class="links">
-                                  <a href="#">View</a> -
-                                  <a href="#">Download</a>
-                                </div>
-                              </li>
-
-                            </ul>
                           </div>
                           ';
 }else{
@@ -99,11 +81,19 @@ if ($id_user == $res['auteur_mp']){
     ]);
     $user = $query->fetch();
 
+    $params = [
+        $id_user,
+        $res["auteur_mp"],
+        $res["contenu_mp"],
+        $res["sujet"]
+    ];
+    $anwser_params = "'".implode( "','",$params)."'";
+
 
     echo '                  <div class="mail_heading row">
                             <div class="col-md-8">
                               <div class="btn-group">
-                                <a class="fa fa-reply btn btn-sm btn-default" "anwser('.$id_user.','.$res["auteur_mp"].','.$res["contenu_mp"].','.$res["sujet"].')"> Répondre</a>
+                                <a class="fa fa-reply btn btn-sm btn-default" onclick="anwser('.$anwser_params.')"> Répondre</a>
                                 <a class="fa fa-trash-o btn btn-sm btn-default" href="deleteMp.php?id_mp='.$res['id_mp'].'&id='.$id_user.'"></a>
                                 <a class="fa fa-print btn btn-sm btn-default" href="#"></a>
                                 <a class="fa fa-share btn btn-sm btn-default" href="#"> Transférer</a>
@@ -128,32 +118,6 @@ if ($id_user == $res['auteur_mp']){
                           </div>
                           <div class="view-mail">
                            '.$res["contenu_mp"].'
-                          </div>
-                          <div class="attachment">
-                            <p>
-                              <span><i class="fa fa-paperclip"></i> Les pièces joints (pas encore fait) — </span>
-                              <a href="#">Télécharger les pjs</a> |
-                              <a href="#">regarder les images</a>
-                            </p>
-                            <ul>
-                              <li>
-                                <a href="#" class="atch-thumb">
-                                  <img src="images/inbox.png" alt="img" />
-                                </a>
-
-                                <div class="file-name">
-                                  image-name.jpg
-                                </div>
-                                <span>12KB</span>
-
-
-                                <div class="links">
-                                  <a href="#">View</a> -
-                                  <a href="#">Download</a>
-                                </div>
-                              </li>
-
-                            </ul>
                           </div>
                           ';
 

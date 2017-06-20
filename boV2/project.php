@@ -6,21 +6,17 @@ require "/todo/libTodo.php";
 
 <!-- page content -->
 
-<div class="right_col" role="main">
+<div class="right_col" role="main" id="mainContent" title="<?php echo $_GET['id']; ?>">
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="title_left">
-                    <h3>La progression du projet</h3>
+                    <h3 onmouseover="hello()">La progression du projet</h3>
                 </div>
                 <div id="custom_progress_bar">
                     <div id="bar" class="bar_class" style="width:<?php echo calculPercentage($_GET['id'])."%";?>"></div>
                 </div>
             </div>
-                <!--<div class="progress" id="bar_container">
-                    <div id="ProgressBar" class="progress-bar progress-bar-success" data-transitiongoal="<?php echo calculPercentage($_GET['id']);?>"></div>
-                </div>-->
-
         </div>
     </br>
     </br>
@@ -47,16 +43,16 @@ require "/todo/libTodo.php";
                             <span class="section">To Do</span>
 
                             <div class="item form-group">
-                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name"> Tâche <span class="required"></span>
-                                </label>
+                                <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name"> Tâche <span class="required"></span></label>
                                 <div class="col-md-6 col-sm-6 col-xs-12">
-                                    <input id="todo" class="form-control col-md-7 col-xs-12" placeholder="Plus de 2 lettres" type="text" required>
+                                    <input id="todo" class="form-control col-md-7 col-xs-12" placeholder="Entrer la tâche à accomplir" type="text" oninput="checkTodo('todo')">
+                                    <div id="todoError"></div>
                                 </div>
                             </div>
                             <div class="ln_solid"></div>
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-3">
-                                    <input type="button" onclick="addTodo(<?php echo $_GET['id']; ?>)" class="btn btn-success" value="Ajouter"/>
+                                    <input type="button" onclick="addTodo(<?php echo $_GET['id']; ?>, checkTodo('todo'))" class="btn btn-success" value="Ajouter"/>
                                     <!--<button id="send" onclick="hello()" class="btn btn-success">Envoyer</button>-->
                                 </div>
                             </div>
@@ -84,6 +80,7 @@ require "/todo/libTodo.php";
     </div>
 </div>
 <script src="build/js/todo.jing.js"></script>
+<script src="build/js/verif.jing.js"></script>
 
 
 
