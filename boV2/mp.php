@@ -1,5 +1,6 @@
 <?php
 require "header.php";
+require "/mp/mpLib.php";
 
 $recu = getMessages($user['id_utilisateur']);
 $send = getSendedMessages($user['id_utilisateur']);
@@ -103,5 +104,6 @@ $send = getSendedMessages($user['id_utilisateur']);
 
 <!--Jing's custom Scripts-->
 <script src="build/js/jing.custom.js"></script>
+<script src="mp/mp.js"></script>
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 session_start();
-require "lib.php";
+require "../lib.php";
+require "mpLib.php";
 
 if (isset($_POST['jsVerif'])){
     $pseudo = $_POST['pseudo'];
@@ -62,14 +63,14 @@ if (isset($_POST['jsVerif'])){
             addNotif($img, $sujet, $contenu_mp, $res['id_utilisateur'],'message');
 
 
-            header("location: mp.php");
+            header("location: ../mp.php");
 
         } //=====================================================================//
         else {//($error == true)
-            header("location: mp.php?errors=" . implode(',', $listOfError));
+            header("location: ../mp.php?errors=" . implode(',', $listOfError));
         }
     } //=====================================================================//
     else {//($_POST est incorrect)
-        header("location: tricheur.php");
+        header("location: ../tricheur.php");
     }
 }
