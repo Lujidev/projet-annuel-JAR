@@ -1,5 +1,6 @@
 function hello(){
-    console.log("hello");
+    //console.log("hello");
+    console.log(document.getElementById("finishedTodo").childNodes);
 }
 
 function newXMLHttpRequest(){
@@ -10,32 +11,35 @@ function newXMLHttpRequest(){
     }
 }
 
-function addTodo(team){
+function addTodo(team, check){
 
-    var request = newXMLHttpRequest();
+    if(check != false){
+        var request = newXMLHttpRequest();
 
-    var todo = document.getElementById("todo").value;
+        var todo = document.getElementById("todo").value;
 
-    request.onreadystatechange = function() {
-        if (request.readyState == 4 && request.status == 200) {
-            document.getElementById("todo").value = "";
-            var list = document.getElementById("todoList");
-            var data = JSON.parse(request.responseText);
-            var balise = document.createElement("li");
-            balise.title = data.id;
-            balise.onclick = function(){
-                finishTodo(data.id);
-            };
-            balise.id = "todo_" + data.id;
-            balise.innerHTML = data.value;
-            list.appendChild(balise);
-            updateProgress(team);
-        }
-    };
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                document.getElementById("todo").value = "";
+                var list = document.getElementById("todoList");
+                var data = JSON.parse(request.responseText);
+                var balise = document.createElement("li");
+                balise.title = data.id;
+                balise.onclick = function(){
+                    finishTodo(data.id);
+                };
+                balise.id = "todo_" + data.id;
+                balise.innerHTML = data.value;
+                list.appendChild(balise);
+                updateProgress(team);
+            }
+        };
 
-    request.open("POST", "todo/addTodo.php", true);
-    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    request.send("team="+team+"&todo="+todo);
+        request.open("POST", "todo/addTodo.php", true);
+        request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        request.send("team="+team+"&todo="+todo);
+    }
+
 
 }
 
@@ -74,6 +78,9 @@ function removeTodo(id, team){
             var baliseLi = document.getElementById("todo_"+id);
             baliseLi.parentNode.removeChild(baliseLi);
             updateProgress(team);
+            /*if (document.getElementById("finishedTodo").childNodes){
+                document.getElementById("finishedTodo").innerHTML = "Allez, du nerf, commencez votre projet =)";
+            }*/
         }
     };
 
@@ -90,10 +97,12 @@ function updateProgress(team){
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
             console.log(JSON.parse(request.responseText));
+            var data = JSON.parse(request.responseText);
             var bar = document.getElementById("bar");
-            bar.style.width = JSON.parse(request.responseText)+"%";
+            bar.style.width = data+"%";
         }
     };
+
 
     request.open("POST", "todo/updateProgress.php", false);
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -101,23 +110,21 @@ function updateProgress(team){
 
 }
 
-
-
 function updateProgressWithId(id){
 
     var request = newXMLHttpRequest();
 
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
-            console.log(JSON.parse(request.responseText));
+            var data = JSON.parse(request.responseText);
+            console.log(data);
             var bar = document.getElementById("bar");
-            bar.style.width = JSON.parse(request.responseText)+"%";
+            bar.style.width = data +"%";
         }
     };
 
     request.open("POST", "todo/updateProgressWithId.php", false);
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.send("id="+id);
-
 
 }

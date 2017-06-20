@@ -58,7 +58,7 @@ function sendMp(user) {
         '<div class="item form-group">' +
         '<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Destinataire<span class="required">*</span></label>' +
         '<div class="col-md-6 col-sm-6 col-xs-12">' +
-        '<input id="name" class="form-control col-md-7 col-xs-12" name="destinataire_mp" placeholder="Plus de 2 lettres" required="required" type="text" onblur="verifPseudo(this)">' +
+        '<input id="name" class="form-control col-md-7 col-xs-12" name="destinataire_mp" placeholder="Plus de 2 lettres" required="required" type="text" onblur="verifPseudo(name)">' +
         '</div>' +
         '<p id="validPseudo"></p>' +
         '</div>' +
@@ -95,14 +95,15 @@ function redHighlight(champ, error)
         champ.style.backgroundColor = "";
 }
 
-function verifPseudo(champ) {
+function verifPseudo(id) {
     var request = newXMLHttpRequest();
+    var champ = document.getElementById(id);
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
             document.getElementById("validPseudo").innerHTML = request.responseText;
             if(request.responseText == "Destinataire non trouvé"){
                 redHighlight(champ, true);
-                return false;
+                //return false;
             }
         }
     };
@@ -113,13 +114,13 @@ function verifPseudo(champ) {
     if(champ.value.length < 2 || champ.value.length > 25)
     {
         redHighlight(champ, true);
-        return false;
+        //return false;
     }
 
     else
     {
         redHighlight(champ, false);
-        return true;
+        //return true;
     }
 }
 
