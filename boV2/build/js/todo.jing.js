@@ -41,17 +41,18 @@ function addTodo(team){
 
 function finishTodo(id){
     var request = newXMLHttpRequest();
-    updateProgressWithId(id);
 
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
+            updateProgressWithId(id);
+            var team = document.getElementById("mainContent").title;
             var baliseLi = document.getElementById("todo_"+id);
             baliseLi.parentNode.removeChild(baliseLi);
             var baliseDone = document.createElement("li");
             baliseDone.innerHTML = request.responseText;
             baliseDone.id = "todo_" + id;
             baliseDone.onclick = function(){
-                removeTodo(id);
+                removeTodo(id, team);
             };
             var listDone = document.getElementById("finishedTodo");
             listDone.appendChild(baliseDone);
@@ -59,24 +60,24 @@ function finishTodo(id){
         }
     };
 
-    request.open("POST", "todo/finishTodo.php", true);
+    request.open("POST", "todo/finishTodo.php", false);
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.send("id="+id);
 }
 
-function removeTodo(id){
+function removeTodo(id, team){
 
     var request = newXMLHttpRequest();
-    updateProgressWithId(id);
 
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
             var baliseLi = document.getElementById("todo_"+id);
             baliseLi.parentNode.removeChild(baliseLi);
+            updateProgress(team);
         }
     };
 
-    request.open("POST", "todo/removeTodo.php", true);
+    request.open("POST", "todo/removeTodo.php", false);
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.send("id="+id);
 
@@ -94,7 +95,7 @@ function updateProgress(team){
         }
     };
 
-    request.open("POST", "todo/updateProgress.php", true);
+    request.open("POST", "todo/updateProgress.php", false);
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.send("team="+team);
 
@@ -114,7 +115,7 @@ function updateProgressWithId(id){
         }
     };
 
-    request.open("POST", "todo/updateProgressWithId.php", true);
+    request.open("POST", "todo/updateProgressWithId.php", false);
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.send("id="+id);
 

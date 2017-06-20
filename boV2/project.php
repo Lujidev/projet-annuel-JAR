@@ -6,7 +6,7 @@ require "/todo/libTodo.php";
 
 <!-- page content -->
 
-<div class="right_col" role="main">
+<div class="right_col" role="main" id="mainContent" title="<?php echo $_GET['id']; ?>">
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
@@ -17,10 +17,6 @@ require "/todo/libTodo.php";
                     <div id="bar" class="bar_class" style="width:<?php echo calculPercentage($_GET['id'])."%";?>"></div>
                 </div>
             </div>
-                <!--<div class="progress" id="bar_container">
-                    <div id="ProgressBar" class="progress-bar progress-bar-success" data-transitiongoal="<?php echo calculPercentage($_GET['id']);?>"></div>
-                </div>-->
-
         </div>
     </br>
     </br>
