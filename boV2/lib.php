@@ -794,3 +794,22 @@ function sendConfirmationMail($email, $validationKey){
 
 
 }
+
+/**
+ * @author: Jing LIN
+ * @return: retour le dernier id d'une table.
+ * $col = le nom de la colonne
+ * $table = la table
+ */
+
+function getSqlLast($col, $table){
+
+    $db = dbConnect();
+    $query = $db->prepare("SELECT ".$col." FROM ".$table." ORDER BY ".$col." DESC LIMIT 1");
+    $query->execute([
+    ]);
+    $last_id = $query->fetch();
+    return $last_id[$col];
+
+}
+

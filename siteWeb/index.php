@@ -47,7 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 				 <span class="menu"></span> 
 					<ul class="navig">
 						<li><a href="index.php"  class="active">Home</a></li>
-						<li><a href="../bo/pages/index.php">Back-Office</a></li>
+						<li><a href="../boV2/pages/index.php">Back-Office</a></li>
 					</ul>
 			</div>
 			<div class="header-right">
