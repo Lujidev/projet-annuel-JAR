@@ -11,6 +11,7 @@ CREATE TABLE CATEGORIES(
 
 CREATE TABLE EQUIPES(
 
+    id INT NOT NULL AUTO_INCREMENT,
     nom_equipe VARCHAR(50) NOT NULL,
     description_equipe VARCHAR(255),
     nb_article INT NOT NULL DEFAULT '0',
@@ -18,7 +19,7 @@ CREATE TABLE EQUIPES(
     equipier VARCHAR(255),
     /*categorie_equipe INT REFERENCES CATEGOERIES(id_categorie),*/
     categorie_equipe VARCHAR (100),
-    PRIMARY KEY(nom_equipe)
+    PRIMARY KEY(id)
 
 );
 
@@ -144,4 +145,12 @@ CREATE TABLE TODO(
     team INT,
     is_done BOOLEAN NOT NULL,
     PRIMARY KEY (id_todo)
+);
+
+CREATE TABLE TEAMMATES(
+    id_team_link INT NOT NULL AUTO_INCREMENT,
+    id_team INT,
+    id_user INT,
+    is_accepted VARCHAR(255),
+    PRIMARY KEY (id_team_link)
 );
