@@ -1,5 +1,15 @@
 <?php
 
+function displayProjectList(){
+
+
+
+
+
+
+
+
+}
 
 
 

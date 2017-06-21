@@ -89,7 +89,7 @@ require_once "conf.inc.php";
 
         }
 
-		$res = $query->fetchAll();
+		$res = $query->fetchAll(PDO::FETCH_ASSOC);
 
         return $res;
     }
@@ -579,6 +579,19 @@ function showNotif($id){
                       </a>
                     </li>';
 
+        }else{
+            echo '      <li>
+                      <a href="'.$value['filter'].'" onclick="viewNotif(' .$value["id_notif"].')">
+                        <span class="image"><img src="'.$value["preview"].'" alt="Profile Image" /></span>
+                        <span>
+                          <span>'.$value["sujet"].'</span>
+                          <span class="time">'.$value["send_time"].'</span>
+                        </span>
+                        <span class="message">
+                          '.$value["notif_desc"].'
+                        </span>
+                      </a>
+                    </li>';
         }
 
 
@@ -713,6 +726,23 @@ function getSqlLast($col, $table){
     ]);
     $last_id = $query->fetch();
     return $last_id[$col];
+
+}
+
+function getAllUsers(){
+
+    $db = dbConnect();
+
+    $query = $db->prepare(
+        "SELECT * FROM UTILISATEURS"
+    );
+
+    $query->execute([
+    ]);
+
+    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    return $res;
 
 }
 

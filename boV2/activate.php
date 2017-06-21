@@ -2,7 +2,6 @@
 
 require "lib.php";
 
-
 $db = dbConnect();
 $query = $db->prepare("SELECT * FROM UTILISATEURS WHERE activation=:token");
 $query->execute( [

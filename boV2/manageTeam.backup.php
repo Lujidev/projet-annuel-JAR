@@ -1,8 +1,7 @@
 <?php
 require "header.php";
 
-
-$res = getProjects($user['id_utilisateur'], $user['droit']);
+$res = getTeams($user['id_utilisateur'], $user['droit']);
 
 ?>
 
@@ -11,7 +10,7 @@ $res = getProjects($user['id_utilisateur'], $user['droit']);
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3>Projets <small>Some examples to get you started</small></h3>
+                <h3>Equipes <small>Some examples to get you started</small></h3>
               </div>
 
               <div class="title_right">
@@ -29,7 +28,6 @@ $res = getProjects($user['id_utilisateur'], $user['droit']);
             <div class="clearfix"></div>
 
             <div class="row">
-
               <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="x_panel">
                   <div class="x_title">
@@ -58,7 +56,7 @@ $res = getProjects($user['id_utilisateur'], $user['droit']);
                       Commentaire ici
                     </p>
                 <form method="POST" action="multipleDelete.php">
-                    <button type="submit" name="PROJETS" value="id_projet">Supprimer</button>
+                    <button type="submit" name="EQUIPES" value="id">Supprimer</button>
 
                     <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
                       <thead>
@@ -66,16 +64,16 @@ $res = getProjects($user['id_utilisateur'], $user['droit']);
                           <th>
 							 <input type="checkbox" id="check-all" class="flat">
 						  </th>
-                            <th>id_projet</th>
-                            <th>nom_projet</th>
-                            <th>description_projet</th>
-                            <th>categorie du projet</th>
+                            <th>nom_equipe</th>
+                            <th>description_equipe</th>
+                            <th>nb_article(s)</th>
+                            <th>categorie_equipe</th>
                             <th>Modifier</th>
                         </tr>
                       </thead>
                       <tbody>
 
-                        <?php manageProjects($res);?>
+                        <?php manageTeams($res, $user['id_utilisateur']);?>
 
                     </form>
                       </tbody>
@@ -159,6 +157,6 @@ $res = getProjects($user['id_utilisateur'], $user['droit']);
     <script src="vendors/jszip/dist/jszip.min.js"></script>
     <script src="vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="vendors/pdfmake/build/vfs_fonts.js"></script>
-
+  
   </body>
 </html>

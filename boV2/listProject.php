@@ -76,15 +76,6 @@ $res = getProjects($user['id_utilisateur'], $user['droit']);
                                     <div>
                                         Nom de la team
                                     </div>
-                                    <!--
-                                    <ul class="list-inline">
-                                        <li>
-                                            <img src="images/user.png" class="avatar" alt="Avatar">
-                                        </li>
-                                        <li>
-                                            <img src="images/user.png" class="avatar" alt="Avatar">
-                                        </li>
-                                    </ul>-->
                                 </td>
                                 <td class="project_progress">
                                     <div class="progress progress_sm">
