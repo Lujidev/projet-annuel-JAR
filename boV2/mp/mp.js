@@ -38,20 +38,20 @@ function sendMp(user) {
         '<div class="item form-group">' +
         '<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Destinataire<span class="required">*</span></label>' +
         '<div class="col-md-6 col-sm-6 col-xs-12">' +
-        '<input id="name" class="form-control col-md-7 col-xs-12" name="destinataire_mp" placeholder="Plus de 2 lettres" required="required" type="text" onblur="verifPseudo('+ balise_id +')" >' +
+        '<input id="name" class="form-control col-md-7 col-xs-12" name="destinataire_mp" placeholder="Plus de 2 lettres" required="required" type="text" oninput="verifPseudo('+ balise_id +')" >' +
         '</div>' +
         '<p id="validPseudo"></p>' +
         '</div>' +
         '<div class="item form-group">' +
         '<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Sujet<span class="required">*</span></label>' +
         '<div class="col-md-6 col-sm-6 col-xs-12">' +
-        '<input id="name" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" name="sujet" placeholder="Plus de 2 lettres" type="text" required>' +
+        '<input id="mp_subject" class="form-control col-md-7 col-xs-12" data-validate-length-range="6" name="sujet" placeholder="Plus de 2 lettres" type="text" required>' +
         '</div>' +
         '</div>' +
         '<div class="item form-group">' +
         '<label class="control-label col-md-3 col-sm-3 col-xs-12" for="textarea">Contenu du Message <span class="required">*</span></label>' +
         '<div class="col-md-6 col-sm-6 col-xs-12">' +
-        '<textarea id="textarea" required="required" name="contenu_mp" class="form-control col-md-7 col-xs-12" required></textarea>' +
+        '<textarea id="mp_content" required="required" name="contenu_mp" class="form-control col-md-7 col-xs-12" rows="10" required></textarea>' +
         '</div>' +
         '</div>' +
         '<div class="col-md-6 col-md-offset-3">' +
@@ -66,8 +66,9 @@ function verifPseudo(id) {
     var champ = document.getElementById(id);
     request.onreadystatechange = function() {
         if (request.readyState == 4 && request.status == 200) {
-            document.getElementById("validPseudo").innerHTML = request.responseText;
-            if(request.responseText == "Destinataire non trouvé"){
+            var msg = JSON.parse(request.responseText);
+            document.getElementById("validPseudo").innerHTML = msg;
+            if(msg == "Destinataire non trouvé"){
                 redHighlight(champ, true);
                 //return false;
             }
@@ -94,9 +95,32 @@ function redHighlight(champ, error)
         champ.style.backgroundColor = "";
 }
 
-function anwser(id_sender, id_reciver, msg, sujet){
+function anwser(id_sender, id_reciver, id_msg, bolean){
 
-    document.getElementById("text").innerHTML = 'sender:'+id_sender+'reciver:'+id_reciver+'data:'+msg+'sujet:'+sujet+'lafin';
+    document.getElementById("text").innerHTML = 'sender:'+id_sender+'reciver:'+id_reciver+'msg:'+id_msg+'lafin';
 
+    var request = newXMLHttpRequest();
+    request.onreadystatechange = function() {
+        if (request.readyState == 4 && request.status == 200) {
+            var data = JSON.parse(request.responseText);
+           sendMp(id_sender);
+           if(bolean == true){
+               document.getElementById("name").value = data.receiver;
+               document.getElementById("mp_subject").value = "RE: "+data.subject;
+           }else{
+               document.getElementById("mp_subject").value = "Transfer: "+data.subject;
+           }
+           document.getElementById("mp_content").value = "\n\n\n\n\n\n\n Message Précédent \n ----------------------------\n"+data.content;
+        }
+    };
+    request.open("POST", "mp/anwserMpData.php", true);
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.send("id_mp="+id_msg+"&id_sender="+id_sender);
 
 }
+
+function printMsg(){
+    var mailBox = document.getElementById("mail_container");
+    window.print();
+}
+
