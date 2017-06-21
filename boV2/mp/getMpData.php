@@ -29,21 +29,33 @@ if ($id_user == $res['auteur_mp']){
     ]);
     $user = $query->fetch();
 
+
+    $str_content = strval($res["contenu_mp"]);
+    $str_subject = strval($res["sujet"]);
+
     $params = [
         $id_user,
         $res["destinataire_mp"],
-        $res["contenu_mp"],
-        $res["sujet"]
+        $id,
+        true
     ];
     $anwser_params = "'".implode( "','",$params)."'";
 
+    $transferParams = [
+        $id_user,
+        $res["destinataire_mp"],
+        $id,
+        false
+    ];
+    $transfer_params = "'".implode( "','",$transferParams)."'";
+
   echo '                  <div class="mail_heading row">
-                            <div class="col-md-8">
+                            <div class="col-md-8 print_button">
                               <div class="btn-group">
                                 <a class="fa fa-reply btn btn-sm btn-default" onclick="anwser('.$anwser_params.')" > Répondre</a>
-                                <a class="fa fa-trash-o btn btn-sm btn-default" href="deleteMp.php?id_mp='.$res['id_mp'].'&id='.$id_user.'"></a>
-                                <a class="fa fa-print btn btn-sm btn-default" href="#"></a>
-                                <a class="fa fa-share btn btn-sm btn-default" href="#"> Transférer</a>
+                                <a class="fa fa-trash-o btn btn-sm btn-default" href="mp/deleteMp.php?id_mp='.$res['id_mp'].'&id='.$id_user.'"></a>
+                                <a class="fa fa-print btn btn-sm btn-default" onclick="printMsg()"></a>
+                                <a class="fa fa-share btn btn-sm btn-default" onclick="anwser('.$transfer_params.')"> Transférer</a>
                               </div>
                             </div>
                             <div class="col-md-4 text-right">
@@ -81,22 +93,34 @@ if ($id_user == $res['auteur_mp']){
     ]);
     $user = $query->fetch();
 
+    $str_content = strval($res["contenu_mp"]);
+    $str_subject = strval($res["sujet"]);
+
     $params = [
         $id_user,
         $res["auteur_mp"],
-        $res["contenu_mp"],
-        $res["sujet"]
+        $id,
+        true
     ];
     $anwser_params = "'".implode( "','",$params)."'";
 
+    $transferParams = [
+        $id_user,
+        $res["auteur_mp"],
+        $id,
+        false
+    ];
+    $transfer_params = "'".implode( "','",$transferParams)."'";
+
+
 
     echo '                  <div class="mail_heading row">
-                            <div class="col-md-8">
+                            <div class="col-md-8 print_button">
                               <div class="btn-group">
                                 <a class="fa fa-reply btn btn-sm btn-default" onclick="anwser('.$anwser_params.')"> Répondre</a>
-                                <a class="fa fa-trash-o btn btn-sm btn-default" href="deleteMp.php?id_mp='.$res['id_mp'].'&id='.$id_user.'"></a>
-                                <a class="fa fa-print btn btn-sm btn-default" href="#"></a>
-                                <a class="fa fa-share btn btn-sm btn-default" href="#"> Transférer</a>
+                                <a class="fa fa-trash-o btn btn-sm btn-default" href="mp/deleteMp.php?id_mp='.$res['id_mp'].'&id='.$id_user.'"></a>
+                                <a class="fa fa-print btn btn-sm btn-default" onclick="printMsg()"></a>
+                                <a class="fa fa-share btn btn-sm btn-default" onclick="anwser('.$transfer_params.')"> Transférer</a>
                               </div>
                             </div>
                             <div class="col-md-4 text-right">

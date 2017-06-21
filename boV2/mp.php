@@ -10,9 +10,9 @@ $send = getSendedMessages($user['id_utilisateur']);
 <div class="right_col" role="main">
     <div class="">
 
-        <div class="page-title">
+        <div class="page-title print_button" id="title_mail">
             <div class="title_left">
-                <h3>Inbox Design <small>Some examples to get you started</small></h3>
+                <h3>Message Privée <small>Tous vos messages</small></h3>
             </div>
 
             <div class="title_right">
@@ -43,8 +43,8 @@ $send = getSendedMessages($user['id_utilisateur']);
                                 </ul>
                                 <div id="myTabContent" class="tab-content">
                                     <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
-                                        <div class="col-sm-3 mail_list_column">
-                                            <button class="btn btn-sm btn-success btn-block" onclick="sendMp(<?php echo $user["id_utilisateur"]?>)">Nouveau Message</button>
+                                        <div class="col-sm-3 mail_list_column" class="mail_list">
+                                            <button class="btn btn-sm btn-success btn-block print_button" onclick="sendMp(<?php echo $user["id_utilisateur"]?>)">Nouveau Message</button>
 
                                             <?php messagesList($recu, $user['id_utilisateur']) ?>
 
@@ -53,7 +53,7 @@ $send = getSendedMessages($user['id_utilisateur']);
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="profile-tab">
                                         <div class="col-sm-3 mail_list_column">
-                                            <button class="btn btn-sm btn-success btn-block" onclick="sendMp(<?php echo $user["id_utilisateur"]?>)">Nouveau Message</button>
+                                            <button class="btn btn-sm btn-success btn-block print_button" onclick="sendMp(<?php echo $user["id_utilisateur"]?>)">Nouveau Message</button>
 
                                             <?php messagesList($send, $user['id_utilisateur']) ?>
 
@@ -61,7 +61,7 @@ $send = getSendedMessages($user['id_utilisateur']);
                                         <!-- /MAIL LIST -->
                                     </div>
                                     <!-- CONTENT MAIL -->
-                                    <div class="col-sm-9 mail_view">
+                                    <div class="col-sm-9 mail_view" id="mail_container">
                                         <div class="inbox-body" id="text"></div>
                                     </div>
                                     <!-- /CONTENT MAIL -->
@@ -79,7 +79,7 @@ $send = getSendedMessages($user['id_utilisateur']);
 
 <!-- footer content -->
 <footer>
-    <div class="pull-right">
+    <div class="pull-right print_button">
         Admin Dumb IT
     </div>
     <div class="clearfix"></div>

@@ -1,0 +1,17 @@
+#myTab{
+    display: none;
+}
+.nav_menu{
+    display: none;
+}
+.mail_list{
+    display: none;
+}
+.print_button{
+    display: none;
+}
+
+body {
+    background-color :#fff;
+    font-size :20pt;
+}

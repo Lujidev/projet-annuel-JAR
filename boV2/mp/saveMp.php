@@ -6,7 +6,9 @@ require "mpLib.php";
 if (isset($_POST['jsVerif'])){
     $pseudo = $_POST['pseudo'];
     if(!verifyPresent("UTILISATEURS", "pseudo", $pseudo)){
-        echo "Destinataire non trouvé";
+        echo json_encode("Destinataire non trouvé");
+    }else{
+        echo json_encode("");
     }
 
 } else {
@@ -29,7 +31,7 @@ if (isset($_POST['jsVerif'])){
         }
 
         $contenu_mp = trim($_POST["contenu_mp"]);
-        if (strlen($contenu_mp) > 100 || strlen($contenu_mp) < 0) {
+        if (strlen($contenu_mp) > 1000 || strlen($contenu_mp) < 0) {
             $error = true;
             $listOfError[] = 6;
         }

@@ -1,5 +1,5 @@
 <?php
-require "lib.php";
+require "../lib.php";
 
 $db = dbConnect();
 
@@ -46,7 +46,7 @@ if (!empty($res)){
     }
 }
 
-header("location: mp.php");
+header("location: ../mp.php");
 
 
 
