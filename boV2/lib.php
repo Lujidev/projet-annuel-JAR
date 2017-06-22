@@ -77,21 +77,43 @@ require_once "conf.inc.php";
     function getTeams($user, $role){
 		$db = dbConnect();
 		if ($role != '3'){
-            $query = $db->prepare("SELECT * FROM equipes WHERE createur = :createur");
-            $query->execute([
-                "createur"=>$user
+
+            $query1 = $db->prepare("SELECT id_team FROM TEAMMATES WHERE id_user = :id_user");
+            $query1->execute([
+                "id_user"=>$user
             ]);
+
+            $teams =  $query1->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($teams as $value){
+
+                $query = $db->prepare("SELECT * FROM equipes WHERE id = :id");
+                $query->execute([
+                    "id"=>$value["id_team"]
+                ]);
+
+                $res = $query->fetchAll(PDO::FETCH_ASSOC);
+
+                return $res;
+
+            }
+
+
+
+
         }
         if ($role == '3'){
             $query = $db->prepare("SELECT * FROM equipes");
             $query->execute([
             ]);
 
+            $res = $query->fetchAll(PDO::FETCH_ASSOC);
+
+            return $res;
+
         }
 
-		$res = $query->fetchAll(PDO::FETCH_ASSOC);
 
-        return $res;
     }
 
     function getArticles($user, $role){
