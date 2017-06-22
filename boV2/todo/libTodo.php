@@ -99,6 +99,25 @@ function calculPercentage($team){
 }
 
 
+function checkStatut($id){
+
+    $db = dbConnect();
+    $query = $db->prepare("SELECT project_statut FROM PROJETS WHERE id_projet = :id");
+    $query->execute([
+        "id"=>$id
+    ]);
+
+    $res=$query->fetch();
+
+    if ($res['project_statut']){
+        return "Annuler la demande";
+    }else{
+        return "Demander de l'aide";
+    }
+
+}
+
+
 
 
 ?>

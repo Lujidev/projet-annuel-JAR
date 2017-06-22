@@ -11,7 +11,7 @@ require "/todo/libTodo.php";
         <div class="row">
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <div class="title_left">
-                    <h3 onmouseover="hello()">La progression du projet</h3>
+                    <h3>La progression du projet</h3>
                 </div>
                 <div id="custom_progress_bar">
                     <div id="bar" class="bar_class" style="width:<?php echo calculPercentage($_GET['id'])."%";?>"></div>
@@ -22,7 +22,8 @@ require "/todo/libTodo.php";
     </br>
         <div class="page-title">
             <div class="title_left">
-                <h3>Création un Projet</h3>
+                <h3>Gestion du projet</h3>
+                <button id="needHelp" onclick="needHelp(<?php echo $_GET['id'];?>)" class="btn btn-danger"><?php echo checkStatut($_GET['id'])?></button>
             </div>
 
             <div class="title_right">

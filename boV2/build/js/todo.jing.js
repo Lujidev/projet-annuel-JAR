@@ -11,6 +11,30 @@ function newXMLHttpRequest(){
     }
 }
 
+function needHelp(id){
+    var request = newXMLHttpRequest();
+
+    request.onreadystatechange = function() {
+        if (request.readyState == 4 && request.status == 200) {
+            if (request.responseText == 1){
+                document.getElementById("needHelp").class = "btn btn-danger";
+                document.getElementById("needHelp").innerHTML = "Annuler la demande";
+                console.log(1);
+            }else{
+                document.getElementById("needHelp").class = "btn btn-danger";
+                document.getElementById("needHelp").innerHTML = "Demander de l'aide";
+                console.log(0);
+            }
+        }
+    };
+
+    request.open("POST", "project/changeStatut.php", true);
+    request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    request.send("id="+id);
+
+}
+
+
 function addTodo(team, check){
 
     if(check != false){

@@ -109,8 +109,7 @@ $user = isConnected();
                   </li>
                   <li><a><i class="fa fa-folder"></i> Projets <span class="fa fa-chevron-down"></span></a>
                     <ul class="nav child_menu">
-                      <li><a href="manageProject.php">Gérer les Projets</a></li>
-                      <li><a href="createProject.php">Créer un Projet</a></li>
+                      <li><a href="listProject.php">Gérer les Projets</a></li>
                     </ul>
                   </li>
                     <?php if ($user['droit'] == 3){

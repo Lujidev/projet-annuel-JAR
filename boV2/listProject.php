@@ -1,9 +1,11 @@
 <?php
 require "header.php";
 require "project/libProject.php";
+require "todo/libTodo.php";
 
 
-$res = getProjects($user['id_utilisateur'], $user['droit']);
+//$res = getProjects($user['id_utilisateur'], $user['droit']);
+$res = getMemberTeam($user['id_utilisateur']);
 
 ?>
 
@@ -11,7 +13,7 @@ $res = getProjects($user['id_utilisateur'], $user['droit']);
     <div class="">
         <div class="page-title">
             <div class="title_left">
-                <h3>Projects <small>Listing design</small></h3>
+                <h3>Projects <small>(récap de tous les projets de vos équipes)</small></h3>
             </div>
 
             <div class="title_right">
@@ -52,8 +54,6 @@ $res = getProjects($user['id_utilisateur'], $user['droit']);
                     </div>
                     <div class="x_content">
 
-                        <p>Simple table with project listing with progress and editing options</p>
-
                         <!-- start project list -->
                         <table class="table table-striped projects">
                             <thead>
@@ -67,31 +67,7 @@ $res = getProjects($user['id_utilisateur'], $user['droit']);
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <td>#</td>
-                                <td>
-                                    <a>Pesamakini Backend UI</a>
-                                </td>
-                                <td>
-                                    <div>
-                                        Nom de la team
-                                    </div>
-                                </td>
-                                <td class="project_progress">
-                                    <div class="progress progress_sm">
-                                        <div class="progress-bar bg-green" role="progressbar" data-transitiongoal="77"></div>
-                                    </div>
-                                    <small>77% Complete</small>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-success btn-xs">Success</button>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
-                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                                </td>
-                            </tr>
+                            <?php displayProjectList($res); ?>
                             </tbody>
                         </table>
                         <!-- end project list -->
