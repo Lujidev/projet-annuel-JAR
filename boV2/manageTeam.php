@@ -65,48 +65,6 @@ $res = getTeams($user['id_utilisateur'], $user['droit']);
                             </thead>
                             <tbody>
                             <?php displayTeams($res); ?>
-                            <!--<tr>
-                                <td>#</td>
-                                <td>
-                                    <a>Pesamakini Backend UI</a>
-                                </td>
-                                <td>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <img src="images/user.png" class="avatar" alt="Avatar">
-                                        </li>
-                                        <li>
-                                            <img src="images/user.png" class="avatar" alt="Avatar">
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Voir </a>
-                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>
-                                    <a>Pesamakini Backend UI</a>
-                                </td>
-                                <td>
-                                    <ul class="list-inline">
-                                        <li>
-                                            <img src="images/user.png" class="avatar" alt="Avatar">
-                                        </li>
-                                        <li>
-                                            <img src="images/user.png" class="avatar" alt="Avatar">
-                                        </li>
-                                    </ul>
-                                </td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Voir </a>
-                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                                </td>
-                            </tr>-->
                             </tbody>
                         </table>
                         <!-- end project list -->

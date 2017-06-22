@@ -35,7 +35,7 @@ CREATE TABLE PROJETS(
     categorie_projet VARCHAR(100) REFERENCES CATEGORIES(id_categorie),
     /*PRIMARY KEY (id_projet)*/
     img_projet VARCHAR(255) DEFAULT 'defaultProject',
-    PRIMARY KEY (id_projet, nom_projet)
+    PRIMARY KEY (id_projet)
 
 );
 

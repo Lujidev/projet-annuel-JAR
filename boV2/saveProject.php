@@ -9,6 +9,7 @@ session_start();
 		$listOfError = array();
 
 		$nom_projet = trim($_POST["nom_projet"]);
+		$id_team = $_POST['id_team'];
 		if (strlen($nom_projet) > 50 || strlen($nom_projet) < 3 ){
 			$error = true;
 			$listOfError[] = 0;
@@ -32,17 +33,17 @@ session_start();
                     $myImage = uploadImage($_FILES["image"], "project");
 
 					//Si on vient de la page creerProjet, alors la requête préparée est une insertion
-					$query = $db->prepare("INSERT INTO PROJETS (nom_projet, description_projet, categorie_projet, img_projet, createur) VALUES(:nom_projet, :description_projet, :categorie_projet, :img_projet, :createur)");
+					$query = $db->prepare("INSERT INTO PROJETS (nom_projet, description_projet, id_team,categorie_projet, img_projet) VALUES(:nom_projet, :description_projet, :id_team,:categorie_projet, :img_projet)");
 					
 					//Récupération des catégories selectionnées par l'utilisateur
 					$categories = getSelectedCategories ($_POST, "p");
 
 					$dataToInsert = [
 						        'nom_projet' => $nom_projet, 
-						"description_projet" => $description_projet, 
+						"description_projet" => $description_projet,
+                        "id_team"=>$id_team,
 						  "categorie_projet" => $categories,
-                        "img_projet"=>$myImage,
-                        "createur"=>$user['id_utilisateur']
+                        "img_projet"=>$myImage
 					];
 
 				}
