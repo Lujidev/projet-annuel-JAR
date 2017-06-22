@@ -37,6 +37,7 @@ $user = isConnected();
       <link href="build/css/custom_jing.css" rel="stylesheet">
       <link rel="stylesheet" href="build/css/print.css" type="text/css" media="print" />
 
+
     <!-- Datatables -->
     <link href="vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
@@ -48,7 +49,7 @@ $user = isConnected();
       <script src='https://www.google.com/recaptcha/api.js'></script>
   </head>
 
-  <body class="nav-md">
+  <body class="nav-md" onload="updateNotif(<?php echo $user['id_utilisateur']?>);">
     <div class="container body">
       <div class="main_container">
         <div class="col-md-3 left_col">

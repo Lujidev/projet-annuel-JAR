@@ -7,9 +7,9 @@ include "header.php";
           <!-- top tiles -->
           <div class="row tile_count">
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
-              <span class="count_top"><i class="fa fa-user"></i> Total Users</span>
-              <div class="count">2500</div>
-              <span class="count_bottom"><i class="green">4% </i> From last Week</span>
+              <span class="count_top"><i class="fa fa-envelope-o"></i> Message(s) Privé(s)</span>
+              <div class="count"><?php echo nbMsgNotRead($user['id_utilisateur']);?></div>
+              <span class="count_bottom"><i class="green">non lu(s) </i></span>
             </div>
             <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
               <span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>
