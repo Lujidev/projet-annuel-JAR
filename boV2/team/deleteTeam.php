@@ -11,6 +11,10 @@ $query->execute([
     "id"=>$id_team
 ]);
 
+$query2 = $db->prepare("DELETE FROM TEAMMATES WHERE id_team=:id");
+$query2->execute([
+    "id"=>$id_team
+]);
 
 $query1 = $db->prepare("DELETE FROM EQUIPES WHERE id=:id");
 $query1->execute([

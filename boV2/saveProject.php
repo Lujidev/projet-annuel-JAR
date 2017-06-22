@@ -60,7 +60,7 @@ session_start();
 
 			$query->execute($dataToInsert);
 			//echo ("<br><br>DONNES INSEREE !"); // mettre une redirection réelle des que la page est prête; 
-			header("location: manageProject.php");
+			header("location: listProject.php");
 			
 		}
 		//=====================================================================//
