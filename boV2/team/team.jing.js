@@ -1,8 +1,11 @@
-function hello(){
+function hello(i){
 
-    console.log("hello");
-    document.getElementById("tags_1").value += ", bonjour";
+    console.log("hello"+i);
 
+}
+
+function test(i){
+    console.log(i);
 }
 
 function newXMLHttpRequest(){
@@ -29,16 +32,19 @@ function showSuggest(teamId){
                 var name = "";
                 var userId="";
                 suggestBox.innerHTML = "";
-                for(var i="0"; i<suggest.length; i++) {
+                for(var i=0; i<suggest.length; i++) {
                     userId = suggest[i].id;
-                   name = suggest[i].name;
+                    name = suggest[i].name;
                    var input = document.createElement("input");
                    input.value = name;
                    input.type = "button";
-                   input.onclick = function(){
+                   //input.setAttribute("onclick", "hello("+i+")");
+                    input.setAttribute("onclick", "addName("+userId+","+teamId+")");
+                   /*input.onclick = function() {
                        addName(userId, teamId, name);
-                   };
+                   };*/
                    suggestBox.appendChild(input);
+
                 }
             }
         };
@@ -49,7 +55,7 @@ function showSuggest(teamId){
 
 }
 
-function addName(userId, teamId, name){
+function addName(userId, teamId){
 
     var users = document.getElementById("user");
 
@@ -77,7 +83,11 @@ function addName(userId, teamId, name){
                 balise.appendChild(img);
             }
         }
+        document.getElementById("suggest").innerHTML = "";
+        document.getElementById("search").value = "";
     };
+
+
     request.open("GET", "team/checkMember.php?userId=" + userId+"&teamId="+teamId);
     request.send();
 
