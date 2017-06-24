@@ -20,7 +20,7 @@ function getMember($teamId){
             "id_utilisateur"=>$value["id_user"]
         ]);
 
-        $gotUser = $query->fetch();
+        $gotUser = $query->fetch(PDO::FETCH_ASSOC);
 
         array_push($dataArray, $gotUser);
     }
@@ -113,6 +113,43 @@ function getTeamInfoWithToken($token){
 
 
 }
+
+function displayTeamMembers($teamId, $userId, $userRole){
+
+
+    $isCreator = isCreatorOfTeam($teamId, $userId);
+
+    $members = getMember($teamId);
+
+    //print_r($members);
+
+    foreach ($members as $value){
+        $userSelected = $value['id_utilisateur'];
+        if (!empty($isCreator) || $userRole==3){
+            $button ="<a href='team/makeTeamCreator.php?upgradeId=".$userSelected."&teamId=".$teamId."'>Faire de lui le capitaine</a>";
+        }else{
+            $button = "";
+        }
+
+
+        echo "<tr>
+            <td>
+                <input type='checkbox' id='check-all' class='flat' name='delete[]' value=".$value['id_utilisateur'].">
+            </td>
+            <td>".$value['id_utilisateur']."</td>
+            <td>".$value['pseudo']."</td>
+            <td>".$value['email']."</td>
+            <td>".$button."</td>
+            </tr>";
+
+
+
+    }
+
+
+
+}
+
 
 
 
