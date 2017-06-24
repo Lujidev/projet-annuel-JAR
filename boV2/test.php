@@ -1,5 +1,6 @@
 <?php
 require "header.php";
+require "checkAccessLib.php";
 ?>
 
 <!-- page content -->
@@ -8,12 +9,7 @@ require "header.php";
             <div class="page-title">
               <div class="title_left">
                 <h3><?php
-
-
-
-                    echo nbNotif($user['id_utilisateur']);
-
-
+                    print_r(isAuthorized_team($user['id_utilisateur'], 2,22));
                     ?></h3>
               </div>
 

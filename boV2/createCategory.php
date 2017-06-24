@@ -1,5 +1,7 @@
 <?php
 require "header.php";
+require "checkAccessLib.php";
+isAuthorized_admin($user['droit']);
 
   $db = dbConnect();
   $query = $db->prepare("SELECT id_categorie, nom_categorie FROM categories WHERE filter = :filter");

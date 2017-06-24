@@ -1,6 +1,7 @@
 <?php
 require "header.php";
 require "team/libTeam.php";
+require "checkAccessLib.php";
 
 $id_team = $_GET["id"];
 $team = getTeam($id_team);
@@ -9,7 +10,8 @@ $db = dbConnect();
 $query = $db->prepare("SELECT id_categorie, nom_categorie FROM categories WHERE filter = :filter");
 $query->execute( [ "filter" => 'p' ] );
 $res = $query->fetchAll();
-
+// verifie si l'utilisateur a le droit acceder à la page
+isAuthorized_team($user['id_utilisateur'], $user['droit'], $_GET['id']);
 ?>
 
 <div class="right_col" role="main">
