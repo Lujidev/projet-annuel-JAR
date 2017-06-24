@@ -6,9 +6,12 @@ require "mpLib.php";
 if (isset($_POST['jsVerif'])){
     $pseudo = $_POST['pseudo'];
     if(!verifyPresent("UTILISATEURS", "pseudo", $pseudo)){
-        echo json_encode("Destinataire non trouvé");
+
+        echo json_encode(false);
+        //echo json_encode("Destinataire non trouvé");
     }else{
-        echo json_encode("");
+        echo json_encode(true);
+        //echo json_encode("");
     }
 
 } else {

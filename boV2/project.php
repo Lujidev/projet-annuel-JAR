@@ -1,6 +1,11 @@
 <?php
 require "header.php";
-require "/todo/libTodo.php";
+require "todo/libTodo.php";
+require "checkAccessLib.php";
+echo $user['id_utilisateur'];
+echo $user['droit'];
+echo $_GET['id'];
+isAuthorized_projet($user['id_utilisateur'], $user['droit'], $_GET['id']);
 ?>
 
 

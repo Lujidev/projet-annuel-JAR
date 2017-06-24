@@ -1,5 +1,7 @@
 <?php
 require "header.php";
+require "checkAccessLib.php";
+isAuthorized_admin($user['droit']);
 ?>
 
         <!-- page content -->
