@@ -91,7 +91,7 @@ function displayProjectList($data, $userId, $userRole){
                                 </td>
                                 <td>
                                     <div>
-                                        '.$teamName["nom_equipe"].'
+                                        '.$teamName.'
                                     </div>
                                 </td>
                                 <td>
