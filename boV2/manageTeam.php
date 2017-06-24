@@ -1,6 +1,7 @@
 <?php
 require "header.php";
 require "team/libTeam.php";
+require "project/libProject.php";
 
 $res = getTeams($user['id_utilisateur'], $user['droit']);
 
@@ -31,6 +32,9 @@ $res = getTeams($user['id_utilisateur'], $user['droit']);
 
         <div class="clearfix"></div>
 
+
+        <?php displayTeamInvit($user['id_utilisateur']); ?>
+
         <div class="row">
             <div class="col-md-12">
                 <div class="x_panel">
@@ -55,7 +59,6 @@ $res = getTeams($user['id_utilisateur'], $user['droit']);
                     </div>
                     <div class="x_content">
                         <!-- start project list -->
-                        <p><?php getMember("11") ?></p>
                         <table class="table table-striped projects">
                             <thead>
                             <tr>
@@ -89,6 +92,8 @@ $res = getTeams($user['id_utilisateur'], $user['droit']);
 <!-- /footer content -->
 </div>
 </div>
+
+<script src="team/team.jing.js"></script>
 
 <!-- jQuery -->
 <script src="vendors/jquery/dist/jquery.min.js"></script>

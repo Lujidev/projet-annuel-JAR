@@ -56,9 +56,9 @@ function getTeamName($teamId){
         "id"=>$teamId
     ]);
 
-    $gotTeam = $query->fetch();
+    $gotTeam = $query->fetch(PDO::FETCH_ASSOC);
 
-    return $gotTeam;
+    return $gotTeam['nom_equipe'];
 
 }
 
