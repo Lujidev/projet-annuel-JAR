@@ -78,13 +78,14 @@ require_once "conf.inc.php";
 		$db = dbConnect();
 		if ($role != '3'){
 
-            $query1 = $db->prepare("SELECT id_team FROM TEAMMATES WHERE id_user = :id_user");
+            $query1 = $db->prepare("SELECT id_team FROM TEAMMATES WHERE id_user = :id_user AND is_accepted = :is_accepted");
             $query1->execute([
-                "id_user"=>$user
+                "id_user"=>$user,
+                "is_accepted"=>1
             ]);
 
             $teams =  $query1->fetchAll(PDO::FETCH_ASSOC);
-
+            $res =[];
             foreach ($teams as $value){
 
                 $query = $db->prepare("SELECT * FROM equipes WHERE id = :id");
@@ -92,15 +93,10 @@ require_once "conf.inc.php";
                     "id"=>$value["id_team"]
                 ]);
 
-                $res = $query->fetchAll(PDO::FETCH_ASSOC);
-
-                return $res;
-
+                array_push($res, $query->fetch(PDO::FETCH_ASSOC));
             }
 
-
-
-
+            return $res;
         }
         if ($role == '3'){
             $query = $db->prepare("SELECT * FROM equipes");
@@ -588,8 +584,8 @@ function showNotif($id){
 
         if ($value['filter'] == 'message'){
 
-            echo '      <li>
-                      <a href="mp.php" onclick="viewNotif(' .$value["id_notif"].')">
+            echo '  <li onclick="viewNotif(' .$value["id_notif"].')">
+                      <a href="mp.php">
                         <span class="image"><img src="'.$value["preview"].'" alt="Profile Image" /></span>
                         <span>
                           <span>'.$value["sujet"].'</span>
@@ -602,8 +598,8 @@ function showNotif($id){
                     </li>';
 
         }else{
-            echo '      <li>
-                      <a href="'.$value['filter'].'" onclick="viewNotif(' .$value["id_notif"].')">
+            echo '  <li onclick="viewNotif(' .$value["id_notif"].')">
+                      <a href="'.$value['filter'].'">
                         <span class="image"><img src="'.$value["preview"].'" alt="Profile Image" /></span>
                         <span>
                           <span>'.$value["sujet"].'</span>
@@ -751,6 +747,12 @@ function getSqlLast($col, $table){
 
 }
 
+/**
+ * @author: Jing LIN
+ * @return: Tous les utilisateurs
+ */
+
+
 function getAllUsers(){
 
     $db = dbConnect();
@@ -768,3 +770,25 @@ function getAllUsers(){
 
 }
 
+/**
+ * @author: Jing LIN
+ * @return: create un lien dans la table TEAMMATES entre l'utilisateur et l'equipe.
+ */
+
+
+function createTeamLink($userId){
+
+    $lastCreatedTeam = getSqlLast("id", "EQUIPES");
+
+    $db = dbConnect();
+
+    $query = $db->prepare(
+        "INSERT INTO TEAMMATES(id_team, id_user, is_accepted) VALUES(:id_team, :id_user, :is_accepted)"
+    );
+
+    $query->execute([
+        "id_team"=>$lastCreatedTeam,
+        "id_user"=>$userId,
+        "is_accepted"=>1
+    ]);
+}

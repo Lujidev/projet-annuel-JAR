@@ -4,6 +4,8 @@ require "team/libTeam.php";
 
 $res = getTeams($user['id_utilisateur'], $user['droit']);
 
+
+
 ?>
 
 
@@ -64,7 +66,7 @@ $res = getTeams($user['id_utilisateur'], $user['droit']);
                             </tr>
                             </thead>
                             <tbody>
-                            <?php displayTeams($res); ?>
+                            <?php displayTeams($res, $user['id_utilisateur']); ?>
                             </tbody>
                         </table>
                         <!-- end project list -->

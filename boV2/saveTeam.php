@@ -55,6 +55,7 @@ session_start();
 			//=====================================================================//
 
 			$query->execute($dataToInsert);
+            createTeamLink($user['id_utilisateur']);
 			//echo ("<br><br>DONNES INSEREE !"); // mettre une redirection réelle des que la page est prête; 
 			header("location: manageTeam.php");
 			

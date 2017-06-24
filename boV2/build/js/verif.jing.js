@@ -59,7 +59,6 @@ function checkPseudo(id){
         redError(champ, false);
         //return true;
     }
-
-
-
 }
+
+
