@@ -66,7 +66,7 @@ $res = getMemberTeam($user['id_utilisateur'], $user['droit']);
                             </tr>
                             </thead>
                             <tbody>
-                            <?php displayProjectList($res); ?>
+                            <?php displayProjectList($res, $user['id_utilisateur'], $user['droit']); ?>
                             </tbody>
                         </table>
                         <!-- end project list -->

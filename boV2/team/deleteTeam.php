@@ -16,7 +16,16 @@ $queryCheck->execute([
 
 $ifUserIsCreator = $queryCheck->fetch();
 
-if (!empty($ifUserIsCreator)){
+
+$queryCheckIfAdmin = $db->prepare("SELECT droit FROM UTILISATEURS WHERE id_utilisateur = :id_utilisateur");
+
+$queryCheckIfAdmin->execute([
+    "id_utilisateur"=>$id_user
+]);
+
+$isAdmin = $queryCheckIfAdmin->fetch();
+
+if (!empty($ifUserIsCreator) || $isAdmin['droit'] == 3){
 
     $query = $db->prepare("DELETE FROM PROJETS WHERE id_team=:id");
     $query->execute([

@@ -62,7 +62,7 @@ function getTeamName($teamId){
 
 }
 
-function displayProjectList($data){
+function displayProjectList($data, $userId, $userRole){
 
     foreach ($data as $value){
 
@@ -73,6 +73,15 @@ function displayProjectList($data){
             $percentage = calculPercentage($projectId)."%";
             $warning = checkProjectStatut($projectId);
             $button = rigthButton($percentage, $warning);
+
+            //check createur
+            $checkCreator = isCreatorOfTeam($val["id_team"], $userId);
+
+            if(!empty($checkCreator) || $userRole == 3){
+                $deleteButton = '<a href="project/deleteProject.php?projectId='.$projectId.'&teamId='.$val["id_team"].'&userId='.$userId.'&userRole='.$userRole.'" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>';
+            }else{
+                $deleteButton = '';
+            }
 
             echo '
                             <tr>
@@ -98,8 +107,8 @@ function displayProjectList($data){
                                 <td>
                                     <a href="project.php?id='.$projectId.'" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View </a>
                                     <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
-                                    <a href="project/deleteProject.php?id='.$projectId.'" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
-                                </td>
+                                    '.$deleteButton.'
+                                 </td>
                             </tr>
         
         ';
@@ -130,6 +139,24 @@ function checkProjectStatut($projectId){
     $res=$query->fetch();
 
     return $res['project_statut'];
+
+}
+
+
+function isCreatorOfTeam($teamId, $userId){
+
+    $db = dbConnect();
+    $query = $db->prepare("SELECT id FROM EQUIPES WHERE id = :id AND createur = :createur");
+    $query->execute([
+        "id"=>$teamId,
+        "createur"=>$userId
+    ]);
+
+    $res=$query->fetch();
+    return $res;
+
+
+
 
 }
 
