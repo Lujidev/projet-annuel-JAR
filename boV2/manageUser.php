@@ -10,7 +10,7 @@ $res = getUsers();
 
         <!-- page content -->
         <div class="right_col" role="main">
-          <div class="">
+          <div>
             <div class="page-title">
               <div class="title_left">
                 <h3>Users <small>Some examples to get you started</small></h3>

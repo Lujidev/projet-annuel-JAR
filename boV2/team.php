@@ -12,6 +12,9 @@ $query->execute( [ "filter" => 'p' ] );
 $res = $query->fetchAll();
 // verifie si l'utilisateur a le droit acceder à la page
 isAuthorized_team($user['id_utilisateur'], $user['droit'], $_GET['id']);
+
+//verifier si c'est le createur
+$isCreator = isCreatorOfTeam($id_team, $user['id_utilisateur']);
 ?>
 
 <div class="right_col" role="main">
@@ -103,6 +106,73 @@ isAuthorized_team($user['id_utilisateur'], $user['droit'], $_GET['id']);
                     </div>
                 </div>
             </div>
+        </div>
+
+
+        <!--Part3-->
+        <div class="row">
+            <div class="page-title">
+                <div class="title_left">
+                    <h3>Users <small>Some examples to get you started</small></h3>
+                </div>
+
+                <div class="title_right">
+                    <div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                      <button class="btn btn-default" type="button">Go!</button>
+                    </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <div class="row">
+                <div class="">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Utilisateur(s) de l'équipe</small></h2>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content">
+                                <p class="text-muted font-13 m-b-30">
+                                    Commentaire ici
+                                </p>
+                                <form method="POST" action="multipleDelete.php?userId=<?php echo $user['id_utilisateur']."&userRole=".$user['droit']; ?>">
+                                    <!--<button type="submit" name="id_team" value="<?php //echo $id_team; ?>">Supprimer</button>-->
+                                    <?php if($user["droit"] == 3 || !empty($isCreator)){echo'
+                                        <button type="submit" name="id_team" value="'.$id_team.'">Supprimer</button>
+                                    ';}
+                                    ?>
+
+                                    <table id="datatable-checkbox" class="table table-striped table-bordered bulk_action">
+                                        <thead>
+                                        <tr>
+                                            <th>
+                                                <input type="checkbox" id="check-all" class="flat">
+                                            </th>
+                                            <th>id_utilisateur</th>
+                                            <th>pseudo</th>
+                                            <th>email</th>
+                                            <th>Action</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+
+                                        <?php displayTeamMembers($id_team, $user['id_utilisateur'],$user['droit']) ?>
+
+                                </form>
+                                </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
         </div>
 
     </div>

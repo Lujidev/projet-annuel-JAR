@@ -155,9 +155,6 @@ function isCreatorOfTeam($teamId, $userId){
     $res=$query->fetch();
     return $res;
 
-
-
-
 }
 
 ?>

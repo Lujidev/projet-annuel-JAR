@@ -1,6 +1,7 @@
 <?php
 session_start();
 include "lib.php";
+require "project/libProject.php";
 isConnected();
 
 $ids=0;
@@ -60,6 +61,33 @@ if(isset($_POST['delete'])){
 
 		
 	}
+
+	if (isset($_POST['id_team'])){
+
+        print_r($_POST);
+      print_r($_GET);
+
+        $idToDelete = $_POST['delete'];
+
+        $isCreator = isCreatorOfTeam($_POST['id_team'], $_GET['userId']);
+
+        if (!empty($isCreator) || $_GET["userRole"] == 3){
+
+            $db = dbConnect();
+
+            foreach ($idToDelete as $value) {
+
+                $query = $db->prepare("DELETE FROM TEAMMATES WHERE id_team = :id_team AND id_user = :id_user");
+                $query->execute([
+                    "id_team" => $_POST['id_team'],
+                    "id_user"=>$value
+                ]);
+            }
+        }
+        header('Location: team.php?id='.$_POST["id_team"]);
+    }
+
+
 
 
 
