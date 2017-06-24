@@ -1,15 +1,32 @@
 <?php
-function getMemberTeam($userId){
+function getMemberTeam($userId, $userRole){
 
-    $db = dbConnect();
+    if ($userRole == 3){
 
-    $query = $db->prepare("SELECT id_team FROM TEAMMATES WHERE id_user=:id_user AND is_accepted = :is_accepted");
-    $query->execute([
-        "id_user"=>$userId,
-        "is_accepted"=>1
-    ]);
+        $db = dbConnect();
 
-    $res = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query = $db->prepare("SELECT id as id_team FROM EQUIPES");
+        $query->execute([
+        ]);
+
+        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+        //print_r($res);
+
+    }else{
+
+        $db = dbConnect();
+
+        $query = $db->prepare("SELECT id_team FROM TEAMMATES WHERE id_user=:id_user AND is_accepted = :is_accepted");
+        $query->execute([
+            "id_user"=>$userId,
+            "is_accepted"=>1
+        ]);
+
+        $res = $query->fetchAll(PDO::FETCH_ASSOC);
+        //print_r($res);
+    }
+
+
 
     $dataArray = [];
 

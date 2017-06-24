@@ -8,9 +8,9 @@ require "checkAccessLib.php";
           <div class="">
             <div class="page-title">
               <div class="title_left">
-                <h3><?php
-                    print_r(isAuthorized_team($user['id_utilisateur'], 2,22));
-                    ?></h3>
+                <pre><h3><?php
+                    getMemberTeam($user['id_utilisateur'], $user['droit']);
+                    ?></h3></pre>
               </div>
 
               <div class="title_right">

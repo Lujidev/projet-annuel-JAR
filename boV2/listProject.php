@@ -5,8 +5,7 @@ require "todo/libTodo.php";
 
 
 //$res = getProjects($user['id_utilisateur'], $user['droit']);
-$res = getMemberTeam($user['id_utilisateur']);
-
+$res = getMemberTeam($user['id_utilisateur'], $user['droit']);
 ?>
 
 <div class="right_col" role="main">
