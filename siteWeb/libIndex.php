@@ -8,7 +8,7 @@
      */
     function indexGetNewestArticle () {
         $db = dbConnect();
-        $query = $db->prepare("SELECT id_article, nom_article, description_article, image FROM ARTICLES WHERE is_delete = 0"); //rajouter condition sur la date
+        $query = $db->prepare("SELECT id_article, nom_article, description_article, image, is_liked FROM ARTICLES WHERE is_deleted = 0"); //rajouter condition sur la date
         $query->execute([]);
         $res = $query->fetchall();
 
@@ -21,16 +21,19 @@
             $image = randImage();
 
             echo '<div class="col-md-3 team-left">
-                <img src="'.$image.'" alt="">
+                <a href="single.php?id='.$value["id_article"].'"><img src="'.$image.'" alt=""></a>
                 <h4>'.$value["nom_article"].'</h4>
-                <p>'.$value["description_article"].'</p>
+                <div class="vote_btns">
+                    <button class="vote_like"><i class="fa fa-thumbs-up" onclick="setLike()"></i>'.$value["is_liked"].'</button>
+                    <button class="vote_dislike"><i class="fa fa-thumbs-down" onclick="setDislike()"></i>'.$value["is_liked"].'</button>
+                </div>
             </div>';
         }
     }
 
     function indexGetNewestProjet () {
         $db = dbConnect();
-        $query = $db->prepare("SELECT id_projet, nom_projet, description_projet, categorie_projet FROM PROJETS WHERE is_delete = 0"); //rajouter condition sur la date
+        $query = $db->prepare("SELECT id_projet, nom_projet, description_projet, categorie_projet FROM PROJETS"); //rajouter condition sur la date
         $query->execute([]);
         $res = $query->fetchall();
 
@@ -103,7 +106,7 @@
 
     function indexGetRandomNewestArticle () {
         $db = dbConnect();
-        $query = $db->prepare("SELECT id_article, nom_article, description_article, image FROM ARTICLES WHERE is_delete = 0 AND id = ROUND( RAND() * 9 ) + 1");
+        $query = $db->prepare("SELECT id_article, nom_article, description_article, image FROM ARTICLES WHERE is_deleted = 0 AND id = ROUND( RAND() * 9 ) + 1");
         $query->execute([]);
         $res = $query->fetch();
 
@@ -133,4 +136,31 @@
 					<div class="clearfix"></div>
 				</div>';
         }
+    }
+
+    function displaySingleArticle(){
+
+        if(!empty($_GET["id"])){
+            $db = dbConnect();
+
+            $query = $db->prepare("SELECT * FROM ARTICLES WHERE id_article = :id" );
+            $query->execute($_GET);
+            $res_data = $query->fetch();
+
+
+            if(!empty($res_data)){
+
+                $form = [
+                    "id_article"=>$res_data["id_article"],
+                    "nom_article"=>$res_data["nom_article"],
+                    "description_article"=>$res_data["description_article"],
+                    "contenu_article"=>$res_data["contenu_article"],
+                    "image"=>$res_data["image"]
+
+                ];
+            }
+        }
+
+        return $form;
+
     }

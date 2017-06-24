@@ -59,7 +59,7 @@ function displayTeams($data, $userId){
                                 </td>
                                 <td>
                                     <a href="team.php?id='.$value["id"].'" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> Voir </a>
-                                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
+                                    <a href="modifyTeam.php?id='.$value["id"].'" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                                     <a href="team/deleteTeam?id='.$value["id"].'&userId='.$userId.'" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>
                                 </td>
                             </tr>

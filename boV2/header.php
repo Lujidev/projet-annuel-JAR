@@ -34,7 +34,10 @@ $user = isConnected();
     <!-- Custom Theme Style -->
     <link href="build/css/custom.min.css" rel="stylesheet">
 
+
       <link href="build/css/custom_jing.css" rel="stylesheet">
+      <link href="build/css/custom-anthony.css" rel="stylesheet">
+
       <link rel="stylesheet" href="build/css/print.css" type="text/css" media="print" />
 
 
@@ -156,6 +159,9 @@ $user = isConnected();
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
               </div>
 
+                <a href="../siteWeb/index.php">
+                    <h4 id="accesAuSite">Accès au site</h4></a>
+
               <ul class="nav navbar-nav navbar-right">
                 <li class="">
                   <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
@@ -163,7 +169,7 @@ $user = isConnected();
                     <span class=" fa fa-angle-down"></span>
                   </a>
                   <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
+                    <li><a href="userSettings.php"> Profile</a></li>
                     <li><a href="disconnect.php"><i class="fa fa-sign-out pull-right"></i>Déconnecter</a></li>
                   </ul>
                 </li>
