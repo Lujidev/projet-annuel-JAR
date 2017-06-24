@@ -53,9 +53,9 @@ if(isset($_POST['delete'])){
 		if (isset($_POST['EQUIPES'])) {
 			header('Location: manageTeam.php');
 		}elseif (isset($_POST['PROJETS'])) {
-			header('Location: manageProject.php');
+			header('Location: listProject.php');
 		}elseif (isset($_POST['CATEGORIES'])) {
-			header('Location: manageCategorie.php');
+			header('Location: manageCategory.php');
 		}
 
 		
