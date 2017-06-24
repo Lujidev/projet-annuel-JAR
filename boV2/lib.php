@@ -369,6 +369,14 @@ require_once "conf.inc.php";
 
             $role = utf8_encode($res['role']);
 
+            if($value['id_utilisateur'] == 1){
+                $action ="";
+            }else if ($value['droit'] == 3){
+                $action = "<a href='makeAdmin.php?downgradeId=".$value['id_utilisateur']."'>Désactiver le mode Admin</a>";
+            }else if($value['droit'] == 2){
+                $action = "<a href='makeAdmin.php?upgradeId=".$value['id_utilisateur']."'>Activer le mode Admin</a>";
+            }
+
             echo "<tr>
             <td>
                 <input type='checkbox' id='check-all' class='flat' name='delete[]' value=".$value['id_utilisateur'].">
@@ -380,21 +388,8 @@ require_once "conf.inc.php";
             <td>".$value['date_creation']."</td>
             <td>".$value['activation']."</td>
             <td><a href=modifyUser.php?id=".$value['id_utilisateur'].">Modifier</a></td>
+            <td>".$action."</td>
             </tr>";
-
-
-
-            
-            /*echo "<tr class='odd gradex'>
-            <td>".$value['id_utilisateur']."</td>
-            <td>".$value['pseudo']."</td>
-            <td>".$value['email']."</td>
-            <td>".$role."</td>
-            <td>".$value['date_creation']."</td>
-            <td>".$value['activation']."</td>
-            <td><a href=removeElements.php?id=".$value['id_utilisateur']."&amp;page=3>Supprimer</a>
-            <td><a href=modifyUser.php?id=".$value['id_utilisateur'].">Modifier</a></td>
-            </tr>";*/
         }
     }
 
@@ -791,4 +786,24 @@ function createTeamLink($userId){
         "id_user"=>$userId,
         "is_accepted"=>1
     ]);
+}
+
+
+function isAdmin($userId){
+
+    $db = dbConnect();
+
+    $query = $db->prepare(
+        "SELECT email FROM UTILISATEURS WHERE id_utilisateur=:id_utilisateur AND droit = :droit"
+    );
+
+    $query->execute([
+        "id_utilisateur"=>$userId,
+        "droit"=>3
+    ]);
+
+    $res = $query->fetch();
+
+    return $res;
+
 }

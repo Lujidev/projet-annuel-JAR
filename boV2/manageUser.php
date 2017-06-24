@@ -75,6 +75,7 @@ $res = getUsers();
                             <th>date_creation</th>
                             <th>activation</th>
                             <th>Modifier</th>
+                            <th>AdminMod</th>
                         </tr>
                       </thead>
                       <tbody>
