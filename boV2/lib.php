@@ -584,7 +584,7 @@ function showNotif($id){
 
         if ($value['filter'] == 'message'){
 
-            echo '      <li onclick="viewNotif(' .$value["id_notif"].')">
+            echo '  <li onclick="viewNotif(' .$value["id_notif"].')">
                       <a href="mp.php">
                         <span class="image"><img src="'.$value["preview"].'" alt="Profile Image" /></span>
                         <span>
@@ -598,7 +598,7 @@ function showNotif($id){
                     </li>';
 
         }else{
-            echo '   <li onclick="viewNotif(' .$value["id_notif"].')">
+            echo '  <li onclick="viewNotif(' .$value["id_notif"].')">
                       <a href="'.$value['filter'].'">
                         <span class="image"><img src="'.$value["preview"].'" alt="Profile Image" /></span>
                         <span>

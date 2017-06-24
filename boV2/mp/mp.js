@@ -34,7 +34,7 @@ function sendMp(user) {
 
     var balise_id = "'"+"name"+"'";
 
-    document.getElementById("text").innerHTML = '<form role="form" method="POST" action="mp/saveMp.php" enctype="multipart/form-data" class="form-horizontal form-label-left" onsubmit="verifPseudo('+ balise_id +')" >' +
+    document.getElementById("text").innerHTML = '<form role="form" name="form" method="POST" action="mp/saveMp.php" enctype="multipart/form-data" class="form-horizontal form-label-left" onsubmit="mdrFunction()">' +
         '<div class="item form-group">' +
         '<label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Destinataire<span class="required">*</span></label>' +
         '<div class="col-md-6 col-sm-6 col-xs-12">' +
@@ -55,11 +55,13 @@ function sendMp(user) {
         '</div>' +
         '</div>' +
         '<div class="col-md-6 col-md-offset-3">' +
-        '<button type="submit" class="btn btn-success">Envoyer</button>' +
+        '<input type="button" value="Envoyer" onclick="submitValidForm('+ balise_id +')" />' +
+        //'<input type="submit" class="btn btn-success">Envoyer</input>' +
         '</div>' +
         '<input type="hidden" name="sender" value="'+ user +'">' +
         '</form>';
 }
+
 
 function verifPseudo(id) {
     var request = newXMLHttpRequest();
@@ -70,29 +72,38 @@ function verifPseudo(id) {
             document.getElementById("validPseudo").innerHTML = msg;
             if(msg == "Destinataire non trouvé"){
                 redHighlight(champ, true);
+                var lolError = 1;
                 //return false;
             }
+            /*if(champ.value.length < 2 || champ.value.length > 25){
+                redHighlight(champ, true);
+                return false;
+            }else{
+                redHighlight(champ, false);
+                return true;
+            }*/
         }
     };
     request.open("POST", "mp/saveMp.php", true);
     request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     request.send("jsVerif=1&pseudo="+champ.value);
 
-    if(champ.value.length < 2 || champ.value.length > 25) {
+    if(champ.value.length < 2 || champ.value.length > 25 || typeof lolError != "undefined") {
         redHighlight(champ, true);
-        //return false;
+        return false;
     }else{
         redHighlight(champ, false);
-        //return true;
+        return true;
     }
 }
 
 function redHighlight(champ, error)
 {
-    if(error)
+    if(error){
         champ.style.backgroundColor = "#fba";
-    else
+    } else {
         champ.style.backgroundColor = "";
+    }
 }
 
 function anwser(id_sender, id_reciver, id_msg, bolean){
@@ -124,3 +135,17 @@ function printMsg(){
     window.print();
 }
 
+function submitValidForm(id){
+
+    console.log(verifPseudo(id));
+
+    if(verifPseudo(id)){
+        console.log("envoyé");
+        //document.form.submit();
+    }else{
+        console.log("nope");
+        //alert("vérifiez le destinataire");
+    }
+
+
+}
