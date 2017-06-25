@@ -1,7 +1,6 @@
 <?php
-include "headerWeb.php";
+require "headerWeb.php";
 require "comparaison/libComparaison.php";
-require "lib.php";
 ?>
 
     <link rel="stylesheet" href="comparaison/comparaiso.css">

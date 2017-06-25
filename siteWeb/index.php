@@ -1,7 +1,6 @@
 <?php
 
-include "headerWeb.php";
-require "libIndex.php";
+require "headerWeb.php";
 
 ?>
 <br>

@@ -6,6 +6,7 @@
             </div>
         </div>
     </div>
+    <script src="product-system/product.js"></script>
     <!--footer-end-->
     </body>
 </html>

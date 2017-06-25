@@ -1,11 +1,11 @@
-.vote_btns{
+#vote_btns{
   margin-top: 10px;
   display: inline-block;
   text-align: right;
 
 }
 
-.vote_like{
+#vote_like{
   border: none;
   padding: 0;
   margin: 0;
@@ -15,11 +15,11 @@
   cursor: pointer;
 
 }
-.vote_like:hover{
+#vote_like:hover{
   color: green;
 }
 
-.vote_dislike{
+#vote_dislike{
   border: none;
   padding: 0;
   margin: 0;
@@ -28,6 +28,6 @@
   cursor: pointer;
 }
 
-.vote_dislike:hover{
+#vote_dislike:hover{
   color: red;
 }

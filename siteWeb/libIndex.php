@@ -1,6 +1,5 @@
 <?php
     require_once "conf.inc.php";
-    require_once "lib.php";
 
     /**
      * @author: Ronan Sgaravatto
@@ -8,7 +7,7 @@
      */
     function indexGetNewestArticle () {
         $db = dbConnect();
-        $query = $db->prepare("SELECT id_article, nom_article, description_article, image, is_liked FROM ARTICLES WHERE is_deleted = 0"); //rajouter condition sur la date
+        $query = $db->prepare("SELECT id_article, nom_article, description_article, image FROM ARTICLES WHERE is_deleted = 0"); //rajouter condition sur la date
         $query->execute([]);
         $res = $query->fetchall();
 
@@ -23,10 +22,6 @@
             echo '<div class="col-md-3 team-left">
                 <a href="single.php?id='.$value["id_article"].'"><img src="'.$image.'" alt=""></a>
                 <h4>'.$value["nom_article"].'</h4>
-                <div class="vote_btns">
-                    <button class="vote_like"><i class="fa fa-thumbs-up" onclick="setLike()"></i>'.$value["is_liked"].'</button>
-                    <button class="vote_dislike"><i class="fa fa-thumbs-down" onclick="setDislike()"></i>'.$value["is_liked"].'</button>
-                </div>
             </div>';
         }
     }
@@ -164,3 +159,86 @@
         return $form;
 
     }
+
+    function displayLikes(){
+
+        $db = dbConnect();
+
+        $query = $db->prepare("SELECT * FROM LIKES");
+        $query->execute();
+        $res = $query->fetch();
+
+        return $res;
+    }
+
+function displayDislikes(){
+
+    $db = dbConnect();
+
+    $query = $db->prepare("SELECT * FROM DISLIKES");
+    $query->execute();
+    $res = $query->fetch();
+
+    return $res;
+}
+
+/*function displayNumberOfLike(){
+    $db = dbConnect();
+    $query = $db->prepare("SELECT MAX(id_article) FROM LIKES ");
+    $query->execute();
+    $res = $query->fetch();
+
+    return $res;
+}
+
+function displayNumberOfDislikes(){
+    $db = dbConnect();
+    $query = $db->prepare("SELECT MAX(id_article) FROM DISLIKES ");
+    $query->execute();
+    $res = $query->fetch();
+
+    return $res;
+} */
+
+function dbComputer(){
+
+    $db = dbConnect();
+    $query = $db->prepare("SELECT * FROM COMPUTER");
+    $query->execute();
+    $res = $query->fetchAll();
+
+    return $res;
+}
+
+function displayComputer($elem){
+
+    foreach ($elem as $key => $value)
+
+
+        echo "<tr>
+            <td>".$value['name_pc']."</td>
+            <td>".$value['cpu']."</td>
+            <td>".$value['gpu']."</td>
+            <td>".$value['ram']."</td>
+          </tr>";
+
+
+}
+
+function likeArticle($id){
+    $db = dbConnect();
+    $query = $db->prepare("SELECT is_liked FROM ARTICLES WHERE id_article = $id");
+    $query->execute($_GET);
+    $res = $query->fetch();
+
+    return $res;
+}
+
+function dislikeArticle($id){
+    $db = dbConnect();
+    $query = $db->prepare("SELECT is_disliked FROM ARTICLES WHERE id_article = $id");
+    $query->execute($_GET);
+    $res = $query->fetch();
+
+    return $res;
+}

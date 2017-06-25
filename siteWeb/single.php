@@ -1,10 +1,11 @@
 <?php
 
-include "headerWeb.php";
-require "libIndex.php";
+require "headerWeb.php";
 
 ?>
 <br>
+
+
 
     <!--team-starts-->
     <div class="team">
@@ -17,6 +18,7 @@ require "libIndex.php";
 
                 $form = displaySingleArticle();
                 $img = $form['image'];
+                $id = $_GET["id"];
 
                 ?>
             </div>
@@ -49,8 +51,10 @@ require "libIndex.php";
                     ";
                 ?>
             </div>
+
         </div>
     </div>
+    <script src="like-system/code-anthony.js"></script>
     <!--team-end-->
 
 
