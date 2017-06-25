@@ -3,6 +3,7 @@ include "headerWeb.php";
 require "comparaison/libComparaison.php";
 require "lib.php";
 ?>
+
     <link rel="stylesheet" href="comparaison/comparaiso.css">
     <br/><br/><br/>
 
