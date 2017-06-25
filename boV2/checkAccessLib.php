@@ -13,7 +13,7 @@ function isAuthorized_projet($userId, $userRole, $projectId){
    if ($userRole == 3){
         return true;
     }
-    $userTeams = getMemberTeam($userId);
+    $userTeams = getMemberTeam($userId, $userRole);
 
     $allUserProject = [];
     foreach ($userTeams as $value){

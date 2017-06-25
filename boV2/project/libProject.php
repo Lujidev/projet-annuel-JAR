@@ -146,7 +146,7 @@ function checkProjectStatut($projectId){
 function isCreatorOfTeam($teamId, $userId){
 
     $db = dbConnect();
-    $query = $db->prepare("SELECT id FROM EQUIPES WHERE id = :id AND createur = :createur");
+    $query = $db->prepare("SELECT id, createur FROM EQUIPES WHERE id = :id AND createur = :createur");
     $query->execute([
         "id"=>$teamId,
         "createur"=>$userId

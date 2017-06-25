@@ -7,7 +7,7 @@ $teamId = $_GET['teamId'];
 $db = dbConnect();
 
 $query = $db->prepare(
-    "SELECT * FROM CHAT WHERE id_team = :id_team"
+    "SELECT * FROM CHAT WHERE id_team = :id_team ORDER BY send_time"
 );
 
 $query->execute([

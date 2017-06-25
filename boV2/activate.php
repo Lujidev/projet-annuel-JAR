@@ -17,6 +17,8 @@ if (!empty($res)){
         "id"=>$res['id_utilisateur'],
         "activation"=> '1'
     ] );
+    header("location: index.php");
+
 }else{
     echo "Erreur, compte innexistant";
 }
