@@ -47,7 +47,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     <li><a href="../bov2/index.php">Back-Office</a></li>
                     <li><a href="products.php">Products</a></li>
                     <li><a href="comparaison.php">Comparateur</a></li>
-                    <li><a href="#">Configo' !</a></li>
+                    <li><a href="config-o-matik/configO.php">Configo' !</a></li>
                 </ul>
             </div>
             <?php
