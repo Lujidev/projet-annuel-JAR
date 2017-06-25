@@ -1,0 +1,33 @@
+.vote_btns{
+  margin-top: 10px;
+  display: inline-block;
+  text-align: right;
+
+}
+
+.vote_like{
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  margin-right: 15px;
+  display: inline-block;
+  cursor: pointer;
+
+}
+.vote_like:hover{
+  color: green;
+}
+
+.vote_dislike{
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.vote_dislike:hover{
+  color: red;
+}
